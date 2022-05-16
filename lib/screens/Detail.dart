@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:qradm/screens/shared/button_purple.dart';
 class Detail extends StatelessWidget {
   String namePlace;
   int stars;
@@ -81,26 +82,7 @@ class Detail extends StatelessWidget {
             )
         )
     );
-
-    final button = TextButton(
-      style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-          overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.hovered)) {
-                return Colors.blue.withOpacity(0.04);
-              }
-              if (states.contains(MaterialState.focused) ||
-                  states.contains(MaterialState.pressed))
-                return Colors.blue.withOpacity(0.12);
-              return null; // Defer to the widget's default.
-            },
-          )
-      ),
-      onPressed: () { },
-
-      child: Text('TextButton'),
-    );
+    
 
     // TODO: implement build
     return Container(
@@ -108,7 +90,7 @@ class Detail extends StatelessWidget {
       child: Column(children: [
         title_start,
         description,
-        button
+        ButtonPurple("Ir principal")
       ],),
     );
   }

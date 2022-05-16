@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:qradm/screens/Detail.dart';
 import 'package:qradm/screens/GradientBack.dart';
 import 'package:qradm/screens/ListOpinion.dart';
+import 'package:qradm/screens/Navigation.dart';
+import 'package:qradm/screens/header_appbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         //body: new Detail("Bahamas", 4, description),
         //body: GradientBack(),//new Detail("Bahamas", 4, description),
+        body: Navigation(),
+        /*
         body: Stack(
           children: <Widget>[
             ListView(
@@ -40,9 +44,9 @@ class MyApp extends StatelessWidget {
                 ListOpinion()
               ],
             ),
-            GradientBack()
+            HeaderAppBar()
           ],
-        ),
+        ),*/
       )
     );
   }

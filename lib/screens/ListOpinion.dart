@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'Opinion.dart';
 
 class ListOpinion extends StatelessWidget {
+  static const y = 1;
+  static const aux = "";
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
