@@ -14,3 +14,11 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+## TUTORIAL
+
+View: Screens y Widget. Interacción con las vistas.
+BLoC: Lógica del negocio; Login, Logout, registros, etc.
+Repository: Clases con conexion a API, bases de datos, Endpoints, etc.
+Data/ Model: Modelos de manejo de datos PODO, Plain Old Dart Object.
