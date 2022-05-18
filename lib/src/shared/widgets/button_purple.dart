@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qradm/src/activity/ui/screens/ActivityScreen.dart';
+import 'package:qradm/src/navigation/NavigationScreen.dart';
 
 
 class ButtonPurple extends StatelessWidget {
@@ -7,15 +9,19 @@ class ButtonPurple extends StatelessWidget {
 
   ButtonPurple(this.buttonText);
 
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    onPressed: () {
+
+    };
+
     return InkWell(
       onTap: () {
-        Scaffold.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Navegando"),
-            )
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NavigationScreen()),
         );
       },
       child: Container(

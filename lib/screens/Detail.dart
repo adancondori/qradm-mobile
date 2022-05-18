@@ -2,7 +2,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:qradm/screens/shared/button_purple.dart';
+import 'package:qradm/src/shared/widgets/button_purple.dart';
 class Detail extends StatelessWidget {
   String namePlace;
   int stars;
