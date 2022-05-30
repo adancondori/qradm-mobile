@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'artist_button.dart';
 import 'artist_information.dart';
 import 'artist_photo.dart';
+import 'artist_arrow.dart';
 
 class ArtistContainer extends StatelessWidget{ 
   String photoPath;
@@ -22,7 +22,7 @@ class ArtistContainer extends StatelessWidget{
            ListTile(
              leading: ArtistPhoto(photoPath),
              title: ArtistInformation(artName, artDetails),
-             trailing: ArtistButton(),
+             trailing: ArrowButton(),
            )
          ]
        ),
