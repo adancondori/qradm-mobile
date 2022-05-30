@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:qradm/screens/ScreenList.dart';
 import 'package:qradm/src/login/bloc/bloc_login.dart';
-import 'package:qradm/src/login/ui/screens/LoginScreen.dart';
+import 'package:qradm/src/login/ui/screens/login_screen.dart';
 import 'package:qradm/src/read_qr/bloc/ReadQR.dart';
 import 'package:qradm/src/read_qr/ui/screens/ReadQR.dart';
 

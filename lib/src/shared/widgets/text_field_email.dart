@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextField_Email extends StatelessWidget{
+class TextFieldEmail extends StatelessWidget{
 
   Widget build(BuildContext context) {
 

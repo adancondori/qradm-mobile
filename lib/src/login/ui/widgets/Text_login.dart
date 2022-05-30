@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Text_Login extends StatelessWidget{
+class TextLogin extends StatelessWidget{
 
   Widget build(BuildContext context) {
 

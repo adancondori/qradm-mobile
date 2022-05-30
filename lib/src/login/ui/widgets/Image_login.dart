@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Image_Login extends StatelessWidget{
+class ImageLogin extends StatelessWidget{
 
   Widget build(BuildContext context) {
 

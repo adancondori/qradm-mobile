@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextField_Password extends StatelessWidget{
+class TextFieldPassword extends StatelessWidget{
 
   Widget build(BuildContext context) {
 

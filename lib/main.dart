@@ -6,7 +6,7 @@ import 'package:qradm/screens/ListOpinion.dart';
 import 'package:qradm/screens/Navigation.dart';
 import 'package:qradm/screens/header_appbar.dart';
 import 'package:qradm/src/login/bloc/bloc_login.dart';
-import 'package:qradm/src/login/ui/screens/LoginScreen.dart';
+import 'package:qradm/src/login/ui/screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp2());
