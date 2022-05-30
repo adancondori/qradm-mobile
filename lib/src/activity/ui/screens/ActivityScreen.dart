@@ -5,7 +5,7 @@ class ActivityScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      color: Colors.greenAccent,
+      color: Colors.amberAccent,
     );
   }
 }
