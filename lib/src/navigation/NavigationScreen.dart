@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qradm/screens/Search.dart';
 import 'package:qradm/screens/home.dart';
+import 'package:qradm/src/navigation/test.dart';
 
 class NavigationScreen extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _NavigationScreen extends State<NavigationScreen> {
   final List<Widget> widgetsChildren = [
     Search(),
     Search(),
-    Search(),
+    TestAPI(),
   ];
 
   void onTapTapped(int index){
