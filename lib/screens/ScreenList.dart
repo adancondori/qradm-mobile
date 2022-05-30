@@ -1,11 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:qradm/screens/screen_list/appBar.dart';
+import 'package:qradm/screens/screen_list/body/arstist.dart';
 import 'package:qradm/screens/screen_list/body/artist_container.dart';
 import 'Opinion.dart';
 
 class ScreenList extends StatelessWidget {
+
+  List<Artist> artists = [];
+  List<Widget> artistsWidgest = [];
+/*  final List<Artist> place = [
+    Artist(id: 1,
+        name: "",
+        detail: "",
+        url_path: "")
+  ];*/
+
+  void generateListArtist() {
+    artists = [];
+    for(var i = 0 ; i < 20; i++ ) {
+      var artist = Artist(id: 1,
+          name: "Hola ${i}",
+          detail: "description ${i}",
+          url_path: "lib/assets/icon/icon.png");
+      artists.add(artist);
+    }
+  }
+
+  void generateWidgetArtist() {
+    artistsWidgest = [];
+    artists.forEach((element) {
+      artistsWidgest.add(ArtistContainer("lib/assets/icon/icon.png", "The Do", "40 Canciones"));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
+    generateListArtist();
+    //generateWidgetArtist();
+
     // TODO: implement build
     return Container(
       color: Colors.white,
@@ -15,19 +49,12 @@ class ScreenList extends StatelessWidget {
             margin: const EdgeInsets.only(
               top: 50,
             ),
-            child: ListView(
-              children: <Widget>[
-                ArtistContainer("lib/assets/icon/icon.png", "The Do", "40 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Kero Kero Bonito", "57 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Frankie Cosmos", "41 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Alvvays", "19 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Bjork", "17 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Blink 182", "13 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Crumb", "8 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Ghostemane", "10 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Myrkur", "20 Canciones"),
-                ArtistContainer("lib/assets/icon/icon.png", "Lindsey Stirling", "31 Canciones"),
-              ],
+            child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: artists.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ArtistContainer(artists[index].url_path, artists[index].name, artists[index].detail);
+                }
             ),
           ),
           HeaderAppBar()
