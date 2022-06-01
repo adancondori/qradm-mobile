@@ -7,7 +7,7 @@ import 'package:qradm/screens/Navigation.dart';
 import 'package:qradm/screens/header_appbar.dart';
 import 'package:qradm/src/login/bloc/bloc_login.dart';
 import 'package:qradm/src/login/ui/screens/LoginScreen.dart';
-import 'package:qradm/src/punishments//ui/screens/PunishmentScreen.dart';
+import 'package:qradm/src/punishments//ui/screens/punishment_screen.dart';
 import 'package:qradm/src/punishments/bloc/bloc_punishments.dart';
 
 void main() {

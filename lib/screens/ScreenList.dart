@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qradm/screens/screen_list/appBar.dart';
-import 'package:qradm/screens/screen_list/body/artist_container.dart';
+import 'package:qradm/src/punishments/widgets/artist_container.dart';
 import 'Opinion.dart';
 
 class ScreenList extends StatelessWidget {

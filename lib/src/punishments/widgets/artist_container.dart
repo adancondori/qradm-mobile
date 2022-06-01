@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'artist_button.dart';
+import '../../../screens/screen_list/body/artist_button.dart';
 import 'artist_information.dart';
 import 'artist_photo.dart';
 import 'artist_arrow.dart';
