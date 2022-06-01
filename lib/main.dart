@@ -8,13 +8,11 @@ import 'package:qradm/screens/ScreenList.dart';
 import 'package:qradm/screens/header_appbar.dart';
 import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
 import 'package:qradm/src/login/bloc/bloc_login.dart';
-import 'package:qradm/src/login/ui/screens/LoginScreen.dart';
+import 'package:qradm/src/login/ui/screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp2());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

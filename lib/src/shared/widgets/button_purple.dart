@@ -9,12 +9,10 @@ class ButtonPurple extends StatelessWidget {
 
   ButtonPurple(this.buttonText);
 
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     onPressed: () {
-
     };
 
     return InkWell(
