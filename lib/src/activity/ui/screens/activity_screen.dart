@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qradm/src/activity/bloc/ListActivity.dart';
-
+import 'package:qradm/src/activity/bloc/list_activity.dart';
 class ActivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,6 @@ class ActivityScreen extends StatelessWidget {
                 ListActivity("Actividad 9", "novena actividad"),
                 ListActivity("Actividad 10", "decima actividad"),
                 ListActivity("Actividad 11", "ondeava actividad"),
-
               ],
             ),
           ),

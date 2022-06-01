@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'activity_Information.dart';
+import 'activity_information.dart';
 
 
 class ListActivity extends StatelessWidget{
   String actInfo;
   String actDetails;
   ListActivity(this.actInfo,this.actDetails);
-
   Widget build(BuildContext context) {
-
-    final artCont =  Card(
+    final Content =  Card(
       margin: EdgeInsets.only(
         top: 10,
       ),
@@ -22,7 +20,7 @@ class ListActivity extends StatelessWidget{
           ]
       ),
     );
-    return artCont;
+    return Content;
   }
 
 }

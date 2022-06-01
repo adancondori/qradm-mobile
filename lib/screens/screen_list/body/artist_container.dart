@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'artist_button.dart';
 import 'artist_information.dart';
 import 'artist_photo.dart';
@@ -7,9 +6,7 @@ import 'artist_photo.dart';
 class ArtistContainer extends StatelessWidget{ 
   String photoPath;
   String artName, artDetails;
-
   ArtistContainer(this.photoPath, this.artName, this.artDetails);
-
   Widget build(BuildContext context) {
 
     final artCont =  Card(

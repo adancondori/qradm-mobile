@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-
 class ActivityInformation extends StatelessWidget{
-
   String name;
   String details;
-
   ActivityInformation(this.name, this.details);
-
   Widget build(BuildContext context) {
-
     final Name = Container(
       margin: const EdgeInsets.only(
         top: 25,
         left: 10,
-
       ),
       child: Text(
         name,
@@ -23,10 +17,8 @@ class ActivityInformation extends StatelessWidget{
           fontWeight: FontWeight.w900,
           color: Colors.black,
         ),
-        // textAlign: TextAlign.left,
       ),
     );
-
     final Details = Container(
       margin: const EdgeInsets.only(
           top: 0,
@@ -41,10 +33,8 @@ class ActivityInformation extends StatelessWidget{
           fontWeight: FontWeight.w300,
           color: Colors.grey,
         ),
-        // textAlign: TextAlign.left,
       ),
     );
-
     final info = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -52,7 +42,6 @@ class ActivityInformation extends StatelessWidget{
         Details
       ],
     );
-
     return info;
   }
 

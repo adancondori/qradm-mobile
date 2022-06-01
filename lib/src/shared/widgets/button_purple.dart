@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qradm/src/activity/ui/screens/ActivityScreen.dart';
+import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
 import 'package:qradm/src/navigation/NavigationScreen.dart';
 
 
