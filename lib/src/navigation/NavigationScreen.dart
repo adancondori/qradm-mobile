@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qradm/screens/ScreenList.dart';
 import 'package:qradm/screens/Search.dart';
 import 'package:qradm/screens/home.dart';
+import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
 import 'package:qradm/src/navigation/test.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -16,7 +17,8 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationScreen extends State<NavigationScreen> {
   int indexTap = 0;
   final List<Widget> widgetsChildren = [
-    Search(),
+    ActivityScreen(),
+    //Search(),
     ScreenList(),
     TestAPI(),
   ];
@@ -59,6 +61,10 @@ class _NavigationScreen extends State<NavigationScreen> {
                   icon: Icon(Icons.person),
                   label: ""
               ),
+              // BottomNavigationBarItem(
+              //     icon: Icon(Icons.person),
+              //     label: ""
+              // ),
             ]
         ),
       ),

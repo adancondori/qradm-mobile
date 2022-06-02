@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qradm/src/activity/bloc/list_activity.dart';
-import '../widgets/Activity.dart';
+import 'package:qradm/src/activity/ui/widgets/list_activity.dart';
+import '../../model/Activity.dart';
 class ActivityScreen extends StatelessWidget {
   List<Activity> activitys =[];
 

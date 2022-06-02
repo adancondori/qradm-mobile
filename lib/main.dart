@@ -60,7 +60,7 @@ class MyApp2 extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           //home: PlatziTripsCupertino(),
-          home: ActivityScreen(),
+          home: LoginScreen(),
         ),
         bloc: LoginBloc());
   }
