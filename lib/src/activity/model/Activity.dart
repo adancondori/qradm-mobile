@@ -1,4 +1,6 @@
-import 'decodable.dart';
+//import 'decodable.dart';
+
+import 'package:qradm/src/service/decodable.dart';
 
 class Activity implements Decodable<Activity> {
 

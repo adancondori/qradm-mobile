@@ -13,8 +13,8 @@ class ArtistPhoto extends StatelessWidget{
         left: 0.0,
         bottom: 10
       ),
-      height: 80.0,
-      width: 80.0,
+      height: 90.0,
+      width: 40.0,
 
       decoration: BoxDecoration(
         shape: BoxShape.circle,

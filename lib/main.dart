@@ -14,6 +14,8 @@ void main() {
   runApp(const MyApp2());
 }
 
+
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   static const String description =
@@ -60,7 +62,7 @@ class MyApp2 extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           //home: PlatziTripsCupertino(),
-          home: ActivityScreen(),
+          home: LoginScreen(),
         ),
         bloc: LoginBloc());
   }
