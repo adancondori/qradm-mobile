@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qradm/src/activity/ui/screens/ActivityScreen.dart';
+import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
 import 'package:qradm/src/navigation/NavigationScreen.dart';
 
 
@@ -9,12 +9,10 @@ class ButtonPurple extends StatelessWidget {
 
   ButtonPurple(this.buttonText);
 
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     onPressed: () {
-
     };
 
     return InkWell(

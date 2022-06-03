@@ -4,6 +4,5 @@ class LoginBloc implements Bloc {
 
   @override
   void dispose() {
-
   }
 }
