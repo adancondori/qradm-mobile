@@ -6,7 +6,7 @@ import 'package:qradm/screens/ListOpinion.dart';
 import 'package:qradm/screens/card_image_list.dart';
 import 'package:qradm/screens/header_appbar.dart';
 import 'package:qradm/screens/home.dart';
-import 'package:qradm/src/navigation/NavigationScreen.dart';
+import 'package:qradm/src/navigation/navigation_screen.dart';
 import 'package:qradm/src/punishments/widgets/listview_sanciones.dart';
 import 'package:qradm/screens/ScreenList.dart';
 
