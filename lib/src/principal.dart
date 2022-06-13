@@ -6,6 +6,7 @@ import 'package:qradm/src/login/bloc/bloc_login.dart';
 import 'package:qradm/src/login/ui/screens/login_screen.dart';
 import 'package:qradm/src/read_qr/bloc/ReadQR.dart';
 import 'package:qradm/src/read_qr/ui/screens/read_qr_screen.dart';
+import 'package:qradm/src/read_qr/ui/widgets/qr_scanner.dart';
 
 class Principal extends StatelessWidget {
   @override
@@ -37,7 +38,7 @@ class Principal extends StatelessWidget {
                 builder: (BuildContext context) {
                   return BlocProvider<ReadQRBloc>(
                     bloc: ReadQRBloc(),
-                    child: ReadQR(),
+                    child: QRView(),
                   );
                 },
               );
