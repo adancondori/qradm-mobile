@@ -22,3 +22,8 @@ View: Screens y Widget. Interacción con las vistas.
 BLoC: Lógica del negocio; Login, Logout, registros, etc.
 Repository: Clases con conexion a API, bases de datos, Endpoints, etc.
 Data/ Model: Modelos de manejo de datos PODO, Plain Old Dart Object.
+
+
+# QR turorial
+https://www.youtube.com/watch?v=Oaujc9-LagY
+
