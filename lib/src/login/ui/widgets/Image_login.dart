@@ -8,8 +8,8 @@ class ImageLogin extends StatelessWidget{
       padding: EdgeInsets.symmetric(vertical: 20.0),
       child: Image.asset(
         "lib/assets/img/login.png",
-        height: 200,
-        width: 200,
+        height: 100,
+        width: 100,
       ),
     );
     return img;

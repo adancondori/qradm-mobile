@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 enum APIType {
-
+  api_login_user,
   listEmployees,
   detailsEmployee,
   refreshToken,
@@ -24,6 +24,12 @@ class APIRoute implements APIRouteConfigurable {
     const noAuth = { 'no_auth': true };
     switch (type) {
       //login
+      case APIType.api_login_user:
+        return RequestOptions(
+            path: '/log_in',
+            method: APIMethod.post,
+            extra: noAuth
+        );
       case APIType.listEmployees:
         return RequestOptions(
           path: '/employees',

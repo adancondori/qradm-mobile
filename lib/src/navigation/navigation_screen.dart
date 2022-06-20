@@ -27,11 +27,9 @@ class _NavigationScreen extends State<NavigationScreen> {
   ];
 
   void onTapTapped(int index){
-
     setState(() {
       indexTap = index;
     });
-
   }
 
   @override
