@@ -17,8 +17,10 @@ class APIClient implements BaseAPIClient {
 
   late final BaseOptions options;
   late Dio instance;
-  APIClient(this.options) {
+  APIClient({ required this.options}) {
+    print("---- aaaaaaaa -----");
     instance = Dio(options);
+    print(instance.options.headers);
   }
 
   @override
@@ -28,7 +30,11 @@ class APIClient implements BaseAPIClient {
     dynamic data}) async {
     final config = route.getConfig();
     config.baseUrl = options.baseUrl;
+    config.headers = options.headers;
+    print("----- APIClient request ---");
     print(config.baseUrl);
+    print(config.headers);
+
     config.data = data;
 
     final response = await instance.fetch(config);

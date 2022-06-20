@@ -7,7 +7,7 @@ class APILogInterceptor extends InterceptorsWrapper {
     print('');
     print('# ERROR');
     // print('<-- ${err.response.statusCode} - ${err?.requestOptions?.uri}');
-    // print('Message: ${err?.error}');
+    print('Message: ${err.error}');
     print('<-- END HTTP');
     return super.onError(err, handler);
   }
@@ -18,7 +18,7 @@ class APILogInterceptor extends InterceptorsWrapper {
     print('# REQUEST');
     // final method = options?.method?.toUpperCase();
     // print('--> $method - ${options?.uri}');
-    // print('Headers: ${options?.headers}');
+     print('Headers: ${options.headers}');
     // print('Data: ${options?.data}');
     // print('--> END $method');
     return super.onRequest(options, handler);

@@ -31,8 +31,7 @@ class _Test extends State<TestAPI> {
   @override
   void initState() {
     super.initState();
-    client = APIClient(
-        BaseOptions(baseUrl: 'http://dummy.restapiexample.com/api/v1')
+    client = APIClient( options: BaseOptions(baseUrl: 'http://dummy.restapiexample.com/api/v1')
     );
     final interceptors = [
       AuthInterceptor(client, AuthToken(expiredTime: 1616142369958)),
@@ -108,7 +107,7 @@ class _Test extends State<TestAPI> {
         create: () => APIListResponse(create: () => Employee())
     );
 
-    final employees = result.response.data;
+    final employees = result.payload.payload;
     return employees;
 
   }

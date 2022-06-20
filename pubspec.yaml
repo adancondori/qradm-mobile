@@ -36,6 +36,8 @@ dependencies:
   http:
   linter:
   dio: ^4.0.0
+  qr_flutter: ^4.0.0
+  mobile_scanner: 1.1.2
 
 dev_dependencies:
   flutter_test:

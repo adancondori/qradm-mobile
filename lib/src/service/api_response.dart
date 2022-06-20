@@ -25,8 +25,9 @@ abstract class GenericObject<T> {
 
 class ResponseWrapper<T> extends GenericObject<T> {
   
-  late T response;
-  late ErrorResponse error;
+  late T payload;
+  late TypeResponse type;
+  // late ErrorResponse error;
 
   ResponseWrapper({ required Create<Decodable> create, error})
 
@@ -37,7 +38,7 @@ class ResponseWrapper<T> extends GenericObject<T> {
     Map<String, dynamic>? json })
   {
     final wrapper = ResponseWrapper<T>(create: create, error: null);
-    wrapper.response = wrapper.genericObject(json);
+    wrapper.payload = wrapper.genericObject(json);
     return wrapper;
   }
   
@@ -45,16 +46,16 @@ class ResponseWrapper<T> extends GenericObject<T> {
 
 class APIResponse<T> extends GenericObject<T> 
   implements Decodable<APIResponse<T>> {
-  
-  late String status;
-  late T data;
+
+  late T payload;
+  late String type;
 
   APIResponse({ required Create<Decodable> create }) : super(create: create);
 
   @override
   APIResponse<T> decode(dynamic json) {
-    status = json['status'];
-    data = genericObject(json['data']);
+    type = json['type'];
+    payload = genericObject(json['payload']);
     return this;
   }
 
@@ -63,20 +64,20 @@ class APIResponse<T> extends GenericObject<T>
 class APIListResponse<T> extends GenericObject<T> 
   implements Decodable<APIListResponse<T>> {
   
-  late String status;
-  late List<T> data;
+  late String type;
+  late List<T> payload;
 
   APIListResponse({ required Create<Decodable> create }) : super(create: create);
 
   @override
   APIListResponse<T> decode(dynamic json) {
-    status = json['status'];
-    data = [];
-    json['data'].forEach((item) {
+    type = json['type'];
+    payload = [];
+    json['payload'].forEach((item) {
       print("----------------");
       print(item);
       print("----------------");
-      data.add(genericObject(item));
+      payload.add(genericObject(item));
     });
     return this;
   }
@@ -84,11 +85,8 @@ class APIListResponse<T> extends GenericObject<T>
 }
 
 class ErrorResponse implements Exception {
-
   late String message;
-
   ErrorResponse({ required this.message });
-
   factory ErrorResponse.fromJson(Map<String, dynamic> json) {
     return ErrorResponse(message: json['message']);
   }
@@ -97,5 +95,17 @@ class ErrorResponse implements Exception {
   String toString() {
     return message;
   }
+}
 
+class TypeResponse implements Exception {
+  late String type;
+  TypeResponse({ required this.type });
+  factory TypeResponse.fromJson(Map<String, dynamic> json) {
+    return TypeResponse(type: json['type']);
+  }
+
+  @override
+  String toString() {
+    return type;
+  }
 }

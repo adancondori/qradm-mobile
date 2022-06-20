@@ -11,16 +11,16 @@ class TextFieldEmail extends StatelessWidget{
           color: Colors.indigo,
           borderRadius: BorderRadius.circular(25),
         ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 15.0),
+        child: const Padding(
+          padding: EdgeInsets.only(left: 15.0),
           child: TextField(
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15.0,
               fontFamily: "Lato",
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Correo electrónico',
+              hintText: 'Code',
             ),
           ),
         ),

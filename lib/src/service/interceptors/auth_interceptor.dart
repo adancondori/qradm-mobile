@@ -43,9 +43,11 @@ class AuthInterceptor extends InterceptorsWrapper {
   ) async {
 
     if (options.extra['no_auth'] ?? false) {
+      print('----- no_auth ---------');
+      print(options.headers);
       return super.onRequest(options, handler);
     }
-
+    print('----- EIDAN ---------');
     if (token.isExpired()) {
       client.instance.lock();
       print('Lock request for refreshing token...');
