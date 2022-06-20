@@ -107,7 +107,7 @@ class _Test extends State<TestAPI> {
         create: () => APIListResponse(create: () => Employee())
     );
 
-    final employees = result.payload.data;
+    final employees = result.payload.payload;
     return employees;
 
   }

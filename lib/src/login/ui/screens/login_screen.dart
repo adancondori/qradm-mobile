@@ -7,9 +7,7 @@ import 'package:qradm/src/service/api_response.dart';
 import 'package:qradm/src/service/api_route.dart';
 import 'package:qradm/src/service/interceptors/auth_interceptor.dart';
 import 'package:qradm/src/service/interceptors/log_interceptor.dart';
-import 'package:qradm/src/shared/widgets/button_purple.dart';
 import 'package:qradm/src/shared/widgets/button_send.dart';
-import 'package:qradm/src/shared/widgets/text_field_password.dart';
 import 'package:qradm/src/shared/widgets/text_field_email.dart';
 import 'package:qradm/src/login/ui/widgets/image_login.dart';
 import 'package:qradm/src/login/ui/widgets/text_login.dart';
@@ -20,7 +18,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String response = '';
   late APIClient client;
   TextEditingController myController = TextEditingController();
 
@@ -30,21 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       MaterialPageRoute(builder: (context) => NavigationScreen()),
     );
   }
-  // () =>
 
-  // Widget okButton = TextButton(
-  //   child: Text("OK"),
-  //   onPressed: () { },
-  // );
-  //
-  // // set up the AlertDialog
-  // AlertDialog alert = AlertDialog(
-  //   title: Text("My title"),
-  //   content: Text("This is my message."),
-  //   actions: <Widget>[
-  //     okButton,
-  //   ],
-  // );
   void onPress() async {
     final result = await fetchLogin();
     if (result.type=="SUCCESSFULLY") {
@@ -61,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 Navigator.of(ctx).pop();
               },
-              child: Text("Ok"),
+              child: Text("Aceptar"),
             ),
           ],
         ),

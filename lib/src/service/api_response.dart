@@ -64,20 +64,20 @@ class APIResponse<T> extends GenericObject<T>
 class APIListResponse<T> extends GenericObject<T> 
   implements Decodable<APIListResponse<T>> {
   
-  late String status;
-  late List<T> data;
+  late String type;
+  late List<T> payload;
 
   APIListResponse({ required Create<Decodable> create }) : super(create: create);
 
   @override
   APIListResponse<T> decode(dynamic json) {
-    status = json['status'];
-    data = [];
-    json['data'].forEach((item) {
+    type = json['type'];
+    payload = [];
+    json['payload'].forEach((item) {
       print("----------------");
       print(item);
       print("----------------");
-      data.add(genericObject(item));
+      payload.add(genericObject(item));
     });
     return this;
   }

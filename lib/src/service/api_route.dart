@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 enum APIType {
   api_login_user,
+  api_extrapoint,
   listEmployees,
   detailsEmployee,
   refreshToken,
@@ -28,6 +29,12 @@ class APIRoute implements APIRouteConfigurable {
         return RequestOptions(
             path: '/log_in',
             method: APIMethod.post,
+            extra: noAuth
+        );
+      case APIType.api_extrapoint:
+        return RequestOptions(
+            path: '/extrapoints',
+            method: APIMethod.get,
             extra: noAuth
         );
       case APIType.listEmployees:

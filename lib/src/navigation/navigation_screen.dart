@@ -3,6 +3,7 @@ import 'package:qradm/screens/ScreenList.dart';
 import 'package:qradm/screens/Search.dart';
 import 'package:qradm/screens/home.dart';
 import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
+import 'package:qradm/src/extra_point/screens/ui/extra_point_screen.dart';
 import 'package:qradm/src/navigation/test.dart';
 import 'package:qradm/src/punishments/ui/screens/punishment_screen.dart';
 import 'package:qradm/src/read_qr/ui/screens/read_qr.dart';
@@ -19,11 +20,13 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationScreen extends State<NavigationScreen> {
   int indexTap = 0;
   final List<Widget> widgetsChildren = [
-    ReadQR(),
+    // ReadQR(),
     //Search(),
     //ScreenList(),
+    ActivityScreen(),
     PunishmentScreen(),
-    TestAPI(),
+    //TestAPI(),
+    ExtraPointScreen()
   ];
 
   void onTapTapped(int index){
