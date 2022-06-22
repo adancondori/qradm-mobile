@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
+import 'package:qradm/src/login/bloc/login_bloc.dart';
 import 'package:qradm/src/navigation/navigation_screen.dart';
 
 
@@ -7,15 +9,19 @@ class ButtonSend extends StatelessWidget {
 
   String buttonText = "Navigate";
 
-  final VoidCallback onPressed;
-  //ButtonPurple(this.buttonText);
-  ButtonSend({Key? key, required this.buttonText, required this.onPressed});
+  // final VoidCallback onPressed;
+  final TextEditingController controller;
+
+  ButtonSend({Key? key, required this.buttonText, required this.controller});
 
   @override
   Widget build(BuildContext context) {
+    final loginBloc = BlocProvider.of<LoginBloc>(context);
 
     return InkWell(
-      onTap: onPressed,
+      onTap: () => {
+        loginBloc.add(SignInRequested(this.controller.value.text))
+      }, //onPressed,
       child: Container(
         margin: const EdgeInsets.only(
             top: 30.0,

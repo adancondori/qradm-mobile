@@ -23,7 +23,6 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
   List<ExtraPoint> extrapoints = [];
   late Future<List<ExtraPoint>> _extrapoints;
 
-
   late APIClient client;
 
   onPressed(ExtraPoint extraPoint) {
@@ -58,17 +57,15 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
   //
   // }
 
-
   @override
   void initState() {
     super.initState();
     client = APIClient(
         options: BaseOptions(
-          connectTimeout: 10000,
-          receiveTimeout: 10000,
-          baseUrl: 'http://192.168.1.116:3200/api/v1/mobile',
-        )
-    );
+      connectTimeout: 10000,
+      receiveTimeout: 10000,
+      baseUrl: 'http://192.168.1.116:3200/api/v1/mobile',
+    ));
     final interceptors = [
       AuthInterceptor(client, AuthToken(expiredTime: 1616142369958)),
       APILogInterceptor(),
@@ -80,19 +77,17 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
   Future<APIListResponse> fetchExtraPoint() async {
     final result = await client.request<APIListResponse<ExtraPoint>>(
         route: APIRoute(APIType.api_extrapoint, routeParams: ''),
-        create: () => APIListResponse(create: () => ExtraPoint())
-    );
+        create: () => APIListResponse(create: () => ExtraPoint()));
     return result.payload;
   }
 
   Future<List> fetchExtraPoint2() async {
     final result = await client.request<APIListResponse<ExtraPoint>>(
         route: APIRoute(APIType.api_extrapoint, routeParams: ''),
-        create: () => APIListResponse(create: () => ExtraPoint())
-    );
+        create: () => APIListResponse(create: () => ExtraPoint()));
     // if (result.type == 'SUCCESSFULLY') {
-      extrapoints.addAll(result.payload.payload as List<ExtraPoint>);
-      print("ENTROOOOO");
+    // extrapoints.addAll(result.payload.payload as List<ExtraPoint>);
+    // print("ENTROOOOO");
     // } else {
     //   showDialog(
     //     context: context,
@@ -138,22 +133,20 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
       appBar: AppBar(title: Text('Actividades')),
       body: Container(
         color: Colors.white,
-        child:  Stack(
+        child: Stack(
           children: <Widget>[
-            Container(
-              child: listWidget
-              // ListView.builder(
-              //     padding: const EdgeInsets.all(8),
-              //     itemCount: extrapoints.length,
-              //     itemBuilder: (BuildContext context, int index) {
-              //       return ExtraPointList(extrapoints[index]);
-              //     }
-              // ),
-            ),
+            Container(child: listWidget
+                // ListView.builder(
+                //     padding: const EdgeInsets.all(8),
+                //     itemCount: extrapoints.length,
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return ExtraPointList(extrapoints[index]);
+                //     }
+                // ),
+                ),
           ],
         ),
       ),
     );
-
   }
 }
