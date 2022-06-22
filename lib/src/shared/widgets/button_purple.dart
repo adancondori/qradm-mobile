@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
-import 'package:qradm/src/navigation/NavigationScreen.dart';
+import 'package:qradm/src/navigation/navigation_screen.dart';
 
 
 class ButtonPurple extends StatelessWidget {

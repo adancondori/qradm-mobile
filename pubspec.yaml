@@ -60,6 +60,7 @@ flutter:
   uses-material-design: true
   assets:
     - lib/assets/icon/icon.png
+    - lib/assets/icon/warning.png
     - lib/assets/img/beach.jpeg
     - lib/assets/img/login.png
   fonts:
