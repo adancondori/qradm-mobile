@@ -13,7 +13,7 @@ class ExtraPoint implements Decodable<ExtraPoint> {
   // late int state;
   // late int is_visible;
   late int event_id;
-  late List<dynamic> my_extrapoint;
+  late ExtraPoint? my_extrapoint;
 
   ExtraPoint();
 
@@ -31,7 +31,10 @@ class ExtraPoint implements Decodable<ExtraPoint> {
     // state = data['state'] ?? 0;
     // is_visible = data['is_visible'] ?? 0;
     event_id = data['event_id'] ?? 0;
-    my_extrapoint = data['my_extrapoint'] ?? [];
+    var extrapoint = ExtraPoint();
+    my_extrapoint = data['my_extrapoint'] != null
+        ? extrapoint.decode(data['my_extrapoint'])
+        : null;
     return this;
   }
 }

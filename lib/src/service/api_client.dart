@@ -17,9 +17,7 @@ class APIClient implements BaseAPIClient {
   late final BaseOptions options;
   late Dio instance;
   APIClient({required this.options}) {
-    print("---- aaaaaaaa -----");
     instance = Dio(options);
-    print(instance.options.headers);
   }
 
   @override

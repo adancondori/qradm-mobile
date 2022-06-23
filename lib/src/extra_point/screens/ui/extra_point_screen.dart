@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:qradm/src/extra_point/model/extra_point.dart';
 import 'package:qradm/src/extra_point/screens/widget/extrapint_list.dart';
 import 'package:qradm/src/navigation/navigation_screen.dart';
+import 'package:qradm/src/read_qr/ui/screens/read_qr.dart';
 import 'package:qradm/src/service/api_client.dart';
 import 'package:qradm/src/service/api_response.dart';
 import 'package:qradm/src/service/api_route.dart';
@@ -26,10 +27,12 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
   late APIClient client;
 
   onPressed(ExtraPoint extraPoint) {
+    print("----------- TEST  TEST -----------");
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => NavigationScreen()),
+      MaterialPageRoute(builder: (context) => ReadQR()),
     );
+    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("TEST TEST ")));
   }
 
   // void callAPI() async {
@@ -119,7 +122,7 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
               padding: const EdgeInsets.all(8),
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
-                return ExtraPointList(snapshot.data[index]);
+                return ExtraPointList(snapshot.data[index], onPress: onPressed);
               }));
         } else {
           return const Center(
