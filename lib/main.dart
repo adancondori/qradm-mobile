@@ -7,6 +7,8 @@ import 'package:qradm/screens/Navigation.dart';
 import 'package:qradm/screens/ScreenList.dart';
 import 'package:qradm/screens/header_appbar.dart';
 import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
+import 'package:qradm/src/api_activitys/ui/screens/screen_api_activitys.dart';
+import 'package:qradm/src/extra_point/screens/ui/extra_point_screen.dart';
 import 'package:qradm/src/login/bloc/bloc_login.dart';
 import 'package:qradm/src/login/ui/screens/login_screen.dart';
 
@@ -62,7 +64,7 @@ class MyApp2 extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           //home: PlatziTripsCupertino(),
-          home: LoginScreen(),
+          home: ApiActivitysScreen(),
         ),
         bloc: LoginBloc());
   }

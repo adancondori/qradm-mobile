@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
         BaseOptions(
           connectTimeout: 10000,
           receiveTimeout: 10000,
-          baseUrl: 'http://192.168.1.116:3200/api/v1/mobile',
+          baseUrl: 'https://www.eventsadm.space/api/v1/mobile',
           headers: headers,
         )
     );
