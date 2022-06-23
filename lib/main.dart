@@ -6,6 +6,7 @@ import 'package:qradm/screens/Navigation.dart';
 import 'package:qradm/src/login/bloc/login_bloc.dart';
 import 'package:qradm/src/login/model/user.dart';
 import 'package:qradm/src/login/ui/screens/login_screen.dart';
+import 'package:qradm/src/read_qr/bloc/qr_bloc.dart';
 import 'package:qradm/src/service/auth_repository.dart';
 
 void main() {
@@ -51,13 +52,23 @@ class AppState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => AuthRepository(),
-      child: BlocProvider(
-          create: (context) => LoginBloc(
-                authRepository: RepositoryProvider.of<AuthRepository>(context),
-              ),
-          child: MyApp2()),
-    );
+        create: (context) => AuthRepository(),
+        child: MultiBlocProvider(providers: [
+          BlocProvider<LoginBloc>(
+              create: (context) => LoginBloc(
+                  authRepository:
+                      RepositoryProvider.of<AuthRepository>(context))),
+          BlocProvider<QrBloc>(
+              create: (context) => QrBloc(
+                  authRepository:
+                      RepositoryProvider.of<AuthRepository>(context)))
+        ], child: MyApp2())
+        //  BlocProvider(
+        //     create: (context) => LoginBloc(
+        //           authRepository: RepositoryProvider.of<AuthRepository>(context),
+        //         ),
+        //     child: MyApp2()),
+        );
     // return MultiBlocProvider(providers: [
     //   BlocProvider(create: ( _ ) => LoginBloc())
     // ],

@@ -10,29 +10,20 @@ class Principal extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       bottomNavigationBar: CupertinoTabScaffold(
-        tabBar: CupertinoTabBar(
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home, color: Colors.indigo),
-                  label: ""
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.search, color: Colors.indigo),
-                  label: ""
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person, color: Colors.indigo),
-                  label: ""
-              ),
-            ]
-        ),
-
+        tabBar: CupertinoTabBar(items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home, color: Colors.indigo), label: ""),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search, color: Colors.indigo), label: ""),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person, color: Colors.indigo), label: ""),
+        ]),
         tabBuilder: (BuildContext context, int index) {
           switch (index) {
             case 0:
               return CupertinoTabView(
                 builder: (BuildContext context) {
-                  return ReadQR();
+                  return ScreenList();
                 },
               );
               break;
@@ -49,16 +40,16 @@ class Principal extends StatelessWidget {
               );
               break;
 
-            default: {
-              return CupertinoTabView(
-                builder: (BuildContext context) => ScreenList(),
-              );
-            }
-            break;
+            default:
+              {
+                return CupertinoTabView(
+                  builder: (BuildContext context) => ScreenList(),
+                );
+              }
+              break;
           }
         },
       ),
     );
   }
-
 }

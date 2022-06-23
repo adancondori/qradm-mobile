@@ -1,6 +1,7 @@
+import 'package:qradm/src/model_generic/group_action.dart';
 import 'package:qradm/src/service/decodable.dart';
 
-class ExtraPoint implements Decodable<ExtraPoint> {
+class ExtraPoint extends GroupAction implements Decodable<ExtraPoint> {
   late int id;
   late String name;
   late String description;
@@ -36,5 +37,15 @@ class ExtraPoint implements Decodable<ExtraPoint> {
         ? extrapoint.decode(data['my_extrapoint'])
         : null;
     return this;
+  }
+
+  @override
+  getName() {
+    return name;
+  }
+
+  @override
+  double getAmount() {
+    return amount;
   }
 }
