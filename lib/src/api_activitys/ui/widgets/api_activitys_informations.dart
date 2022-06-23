@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qradm/src/api_activitys/model/api_activitys.dart';
-import 'package:qradm/src/api_activitys/ui/widgets/api_activitys_list.dart';
 class ApiActivitysInformations extends StatelessWidget{
   ApiActivitys apiActivitys ;
   ApiActivitysInformations(this.apiActivitys, {Key? key}) : super(key: key);
