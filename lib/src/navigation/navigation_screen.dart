@@ -3,6 +3,7 @@ import 'package:qradm/screens/ScreenList.dart';
 import 'package:qradm/screens/Search.dart';
 import 'package:qradm/screens/home.dart';
 import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
+import 'package:qradm/src/api_activitys/ui/screens/screen_api_activitys.dart';
 import 'package:qradm/src/extra_point/screens/ui/extra_point_screen.dart';
 import 'package:qradm/src/navigation/test.dart';
 import 'package:qradm/src/punishments/ui/screens/punishment_screen.dart';
@@ -21,7 +22,7 @@ class _NavigationScreen extends State<NavigationScreen> {
   final List<Widget> widgetsChildren = [
     //Search(),
     //ScreenList(),
-    ActivityScreen(),
+    ApiActivitysScreen(),
     PunishmentScreen(),
     //TestAPI(),
     ExtraPointScreen()

@@ -17,7 +17,6 @@ class ExtraPointScreen extends StatefulWidget {
 
 class _ExtraPointScreenState extends State<ExtraPointScreen> {
   List<ExtraPoint> extrapoints = [];
-  late Future<List<ExtraPoint>> _extrapoints;
 
   late APIClient client;
 
