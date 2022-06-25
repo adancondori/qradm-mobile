@@ -1,25 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:qradm/screens/Detail.dart';
-import 'package:qradm/screens/GradientBack.dart';
-import 'package:qradm/screens/ListOpinion.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qradm/screens/Navigation.dart';
-import 'package:qradm/screens/ScreenList.dart';
-import 'package:qradm/screens/header_appbar.dart';
-import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
-import 'package:qradm/src/api_activitys/ui/screens/screen_api_activitys.dart';
-import 'package:qradm/src/extra_point/screens/ui/extra_point_screen.dart';
-import 'package:qradm/src/login/bloc/bloc_login.dart';
+import 'package:qradm/src/detail_group/bloc/group_bloc.dart';
+import 'package:qradm/src/login/bloc/login_bloc.dart';
+import 'package:qradm/src/login/model/user.dart';
 import 'package:qradm/src/login/ui/screens/login_screen.dart';
+import 'package:qradm/src/read_qr/bloc/qr_bloc.dart';
+import 'package:qradm/src/service/auth_repository.dart';
 
 void main() {
-  runApp(const MyApp2());
+  runApp(AppState());
 }
 
-
-
 class MyApp extends StatelessWidget {
-  const MyApp({ Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
   static const String description =
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. \n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
 
@@ -53,19 +49,45 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyApp2 extends StatelessWidget {
-  const MyApp2({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
+class AppState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          //home: PlatziTripsCupertino(),
-          home: ApiActivitysScreen(),
-        ),
-        bloc: LoginBloc());
+    return RepositoryProvider(
+        create: (context) => AuthRepository(),
+        child: MultiBlocProvider(providers: [
+          BlocProvider<LoginBloc>(
+              create: (context) => LoginBloc(
+                  authRepository:
+                      RepositoryProvider.of<AuthRepository>(context))),
+          BlocProvider<QrBloc>(
+              create: (context) => QrBloc(
+                  authRepository:
+                      RepositoryProvider.of<AuthRepository>(context))),
+          BlocProvider<GroupBloc>(
+              create: (context) => GroupBloc(
+                  authRepository:
+                  RepositoryProvider.of<AuthRepository>(context))),
+        ], child: MyApp2())
+        );
+  }
+}
+
+class MyApp2 extends StatelessWidget {
+  final userStream = new StreamController<User>();
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: StreamBuilder<User?>(
+          stream: userStream.stream,
+          builder: (context, snapshot) {
+            // If the snapshot has user data, then they're already signed in. So Navigating to the Dashboard.
+            if (snapshot.hasData) {
+              return Navigation();
+            }
+            // Otherwise, they're not signed in. Show the sign in page.
+            return LoginScreen();
+          }),
+    );
   }
 }
