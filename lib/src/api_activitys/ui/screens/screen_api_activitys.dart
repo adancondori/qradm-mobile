@@ -1,29 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:qradm/src/extra_point/model/extra_point.dart';
-import 'package:qradm/src/extra_point/screens/widget/extrapint_list.dart';
-import 'package:qradm/src/read_qr/ui/screens/read_qr.dart';
+import 'package:qradm/src/api_activitys/model/api_activitys.dart';
+import 'package:qradm/src/api_activitys/ui/widgets/api_activitys_list.dart';
+import 'package:qradm/src/navigation/navigation_screen.dart';
 import 'package:qradm/src/service/api_client.dart';
 import 'package:qradm/src/service/api_response.dart';
 import 'package:qradm/src/service/api_route.dart';
-import 'package:qradm/src/service/app_constant.dart';
 import 'package:qradm/src/service/interceptors/auth_interceptor.dart';
 import 'package:qradm/src/service/interceptors/log_interceptor.dart';
 
-class ExtraPointScreen extends StatefulWidget {
+class ApiActivitysScreen extends StatefulWidget {
   @override
-  _ExtraPointScreenState createState() => _ExtraPointScreenState();
+  _ApiActivitysScreenState createState() => _ApiActivitysScreenState();
 }
 
-class _ExtraPointScreenState extends State<ExtraPointScreen> {
-  List<ExtraPoint> extrapoints = [];
+class _ApiActivitysScreenState extends State<ApiActivitysScreen> {
+  List<ApiActivitys> apiActivitys = [];
 
   late APIClient client;
 
-  onPressed(ExtraPoint extraPoint) {
+  onPressed(ApiActivitys apiActivitys) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ReadQR(groupaction: extraPoint)),
+      MaterialPageRoute(builder: (context) => NavigationScreen()),
     );
   }
 
@@ -34,40 +33,36 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
         options: BaseOptions(
       connectTimeout: 10000,
       receiveTimeout: 10000,
-      baseUrl: AppConstants.BASE_URL,
+      baseUrl: 'https://www.eventsadm.space/api/v1/mobile',
     ));
     final interceptors = [
       AuthInterceptor(client, AuthToken(expiredTime: 1616142369958)),
       APILogInterceptor(),
     ];
     client.instance.interceptors.addAll(interceptors);
+    // callAPI();
   }
 
-  Future<APIListResponse> fetchExtraPoint() async {
-    final result = await client.request<APIListResponse<ExtraPoint>>(
-        route: APIRoute(APIType.api_extrapoint, routeParams: ''),
-        create: () => APIListResponse(create: () => ExtraPoint()));
-    return result.payload;
-  }
-
-  Future<List> fetchExtraPoint2() async {
-    final result = await client.request<APIListResponse<ExtraPoint>>(
-        route: APIRoute(APIType.api_extrapoint, routeParams: ''),
-        create: () => APIListResponse(create: () => ExtraPoint()));
+  Future<List> fetchApiActivitys2() async {
+    final result = await client.request<APIListResponse<ApiActivitys>>(
+        route: APIRoute(APIType.api_activity, routeParams: ''),
+        create: () => APIListResponse(create: () => ApiActivitys()));
+    // if (result.type == 'SUCCESSFULLY') {
+    apiActivitys.addAll(result.payload.payload as List<ApiActivitys>);
     return result.payload.payload;
   }
 
   @override
   Widget build(BuildContext context) {
     Widget listWidget = FutureBuilder(
-      future: fetchExtraPoint2(),
+      future: fetchApiActivitys2(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           return (ListView.builder(
               padding: const EdgeInsets.all(8),
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
-                return ExtraPointList(snapshot.data[index], onPress: onPressed);
+                return ApiActivitysList(snapshot.data[index]);
               }));
         } else {
           return const Center(
@@ -78,7 +73,7 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Actividades')),
+      appBar: AppBar(title: Text('Api Actividades Prueba')),
       body: Container(
         color: Colors.white,
         child: Stack(
