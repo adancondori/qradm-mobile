@@ -74,7 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is UnAuthenticated || state is AuthError) {
+            } else if (state is UnAuthenticated ||
+                state is AuthError ||
+                state is Authenticated) {
               // Showing the sign in form if the user is not authenticated
               return Body(myController: myController);
             }

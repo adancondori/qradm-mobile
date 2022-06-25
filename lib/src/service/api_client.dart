@@ -28,11 +28,11 @@ class APIClient implements BaseAPIClient {
     final config = route.getConfig();
     config.baseUrl = options.baseUrl;
     config.headers = options.headers;
+    config.data = data;
     print("----- APIClient request ---");
     print(config.baseUrl);
     print(config.headers);
-
-    config.data = data;
+    print(config.data);
 
     final response = await instance.fetch(config);
     final responseData = response.data;

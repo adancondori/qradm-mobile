@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qradm/screens/Navigation.dart';
+import 'package:qradm/src/detail_group/bloc/group_bloc.dart';
 import 'package:qradm/src/login/bloc/login_bloc.dart';
 import 'package:qradm/src/login/model/user.dart';
 import 'package:qradm/src/login/ui/screens/login_screen.dart';
@@ -61,25 +62,18 @@ class AppState extends StatelessWidget {
           BlocProvider<QrBloc>(
               create: (context) => QrBloc(
                   authRepository:
-                      RepositoryProvider.of<AuthRepository>(context)))
+                      RepositoryProvider.of<AuthRepository>(context))),
+          BlocProvider<GroupBloc>(
+              create: (context) => GroupBloc(
+                  authRepository:
+                  RepositoryProvider.of<AuthRepository>(context))),
         ], child: MyApp2())
-        //  BlocProvider(
-        //     create: (context) => LoginBloc(
-        //           authRepository: RepositoryProvider.of<AuthRepository>(context),
-        //         ),
-        //     child: MyApp2()),
         );
-    // return MultiBlocProvider(providers: [
-    //   BlocProvider(create: ( _ ) => LoginBloc())
-    // ],
-    //     child: MyApp2());
   }
 }
 
 class MyApp2 extends StatelessWidget {
   final userStream = new StreamController<User>();
-  // const MyApp2({Key? key}) : super(key: key);
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -95,11 +89,5 @@ class MyApp2 extends StatelessWidget {
             return LoginScreen();
           }),
     );
-    // MaterialApp(
-    //     debugShowCheckedModeBanner: false,
-    //     title: 'Flutter Demo',
-    //     //home: PlatziTripsCupertino(),
-    //     home: LoginScreen(),
-    //   );
   }
 }

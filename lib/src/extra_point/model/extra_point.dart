@@ -48,4 +48,9 @@ class ExtraPoint extends GroupAction implements Decodable<ExtraPoint> {
   double getAmount() {
     return amount;
   }
+
+  @override
+  int getId() {
+    return id;
+  }
 }

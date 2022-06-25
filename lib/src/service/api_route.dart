@@ -4,6 +4,7 @@ enum APIType {
   api_login_user,
   api_extrapoint,
   api_scan_group,
+  api_group_extrapoint,
   listEmployees,
   detailsEmployee,
   refreshToken,
@@ -34,6 +35,12 @@ class APIRoute implements APIRouteConfigurable {
             path: '/group_qrscan?$routeParams',
             method: APIMethod.get,
             extra: noAuth);
+      case APIType.api_group_extrapoint:
+        return RequestOptions(
+            path: '/save_group_extrapoint',
+            method: APIMethod.post,
+            extra: noAuth);
+
       case APIType.listEmployees:
         return RequestOptions(
             path: '/employees', method: APIMethod.get, extra: noAuth);

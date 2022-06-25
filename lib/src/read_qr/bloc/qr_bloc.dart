@@ -11,18 +11,20 @@ class QrBloc extends Bloc<QrEvent, QrState> {
   final AuthRepository authRepository;
 
   QrBloc({required this.authRepository}) : super(QrInitial()) {
-    on<RequestAPI>((event, emit) async {
-      emit(Loading());
-      try {
-        final result = await authRepository.ScanCode(event.code_group);
-        if (result.type == AppConstants.RESPONSE_SUCCESSFULLY) {
-          emit(RedirectGroup(result.payload));
-        } else {
-          emit(AuthError(result.msg));
+    on<RequestAPI>(
+      (event, emit) async {
+        emit(Loading());
+        try {
+          final result = await authRepository.ScanCode(event.code_group);
+          if (result.type == AppConstants.RESPONSE_SUCCESSFULLY) {
+            emit(RedirectGroup(result.payload));
+          } else {
+            emit(AuthError(result.msg));
+          }
+        } catch (e) {
+          emit(AuthError(e.toString()));
         }
-      } catch (e) {
-        emit(AuthError(e.toString()));
-      }
-    });
+      },
+    );
   }
 }

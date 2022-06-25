@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:qradm/src/detail_group/model/group.dart';
+import 'package:qradm/src/extra_point/model/request_extrapoint.dart';
+import 'package:qradm/src/extra_point/model/response_acepsa.dart';
 import 'package:qradm/src/login/model/user.dart';
 import 'package:qradm/src/service/api_client.dart';
 import 'package:qradm/src/service/api_response.dart';
 import 'package:qradm/src/service/api_route.dart';
+import 'package:qradm/src/service/app_constant.dart';
 import 'package:qradm/src/service/interceptors/auth_interceptor.dart';
 import 'package:qradm/src/service/interceptors/log_interceptor.dart';
 
@@ -12,7 +15,7 @@ class AuthRepository {
       options: BaseOptions(
     connectTimeout: 10000,
     receiveTimeout: 10000,
-    baseUrl: 'http://192.168.1.116:3200/api/v1/mobile',
+    baseUrl: AppConstants.BASE_URL,
     // headers: headers,
   ));
 
@@ -42,5 +45,44 @@ class AuthRepository {
       create: () => APIResponse(create: () => Group()),
     );
     return result.payload;
+  }
+
+  Future<ResponseAcEPSa> sendGroupACEPSA(RequestGroup requestGroup) async {
+    // Perform GET request to the endpoint "/users/<id>"
+    final Dio _dio = Dio();
+    Map<String, dynamic> headers = {'CODE': requestGroup.user.code};
+    _dio.options = BaseOptions(headers: headers);
+
+    ResponseAcEPSa responseAcEPSa = ResponseAcEPSa();
+    try {
+      Response request = await _dio.post(
+        AppConstants.BASE_URL + '/save_group_extrapoint',
+        data: {
+          "code_group": requestGroup.codeGroup,
+          "extrapoint_id": requestGroup.extrapointId,
+          "value": requestGroup.value,
+          "observation": requestGroup.observation,
+        },
+      );
+      print('User Info: ${request.data}');
+
+      responseAcEPSa.decode(request.data);
+      // user = User.fromJson(userData.data);
+    } on DioError catch (e) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx and is also not 304.
+      if (e.response != null) {
+        print('Dio error!');
+        print('STATUS: ${e.response?.statusCode}');
+        print('DATA: ${e.response?.data}');
+        print('HEADERS: ${e.response?.headers}');
+      } else {
+        // Error due to setting up or sending the request
+        print('Error sending request!');
+        print(e.message);
+      }
+    }
+
+    return responseAcEPSa;
   }
 }

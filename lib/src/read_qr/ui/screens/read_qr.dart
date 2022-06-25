@@ -16,6 +16,8 @@ class ReadQR extends StatefulWidget {
 }
 
 class _ReadQRState extends State<ReadQR> {
+  MobileScannerController cameraController = MobileScannerController();
+
   goGroupDetail(Group group) {
     Navigator.push(
       context,
@@ -28,8 +30,13 @@ class _ReadQRState extends State<ReadQR> {
   }
 
   @override
+  void dispose() {
+    // cameraController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    MobileScannerController cameraController = MobileScannerController();
     return Scaffold(
       appBar: AppBar(
         title: const Text('QR Scanner'),
@@ -75,12 +82,10 @@ class _ReadQRState extends State<ReadQR> {
               state.group,
             );
           }
-          // if (state is AuthError) {
-          //   // Showing the error message if the user has entered invalid credentials
-          //   ScaffoldMessenger.of(context)
-          //       .showSnackBar(SnackBar(content: Text(state.error)));
-          //   shoDialog(state.error);
-          // }
+          if (state is AuthError) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.error)));
+          }
         },
         child: BlocBuilder<QrBloc, QrState>(
           builder: (context, state) {
@@ -100,60 +105,6 @@ class _ReadQRState extends State<ReadQR> {
         ),
       ),
     );
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: const Text('QR Scanner'),
-    //       actions: [
-    //         IconButton(
-    //           color: Colors.white,
-    //           icon: ValueListenableBuilder(
-    //             valueListenable: cameraController.torchState,
-    //             builder: (context, state, child) {
-    //               switch (state as TorchState) {
-    //                 case TorchState.off:
-    //                   return const Icon(Icons.flash_off, color: Colors.grey);
-    //                 case TorchState.on:
-    //                   return const Icon(Icons.flash_on, color: Colors.yellow);
-    //               }
-    //             },
-    //           ),
-    //           iconSize: 32.0,
-    //           onPressed: () => cameraController.toggleTorch(),
-    //         ),
-    //         IconButton(
-    //           color: Colors.white,
-    //           icon: ValueListenableBuilder(
-    //             valueListenable: cameraController.cameraFacingState,
-    //             builder: (context, state, child) {
-    //               switch (state as CameraFacing) {
-    //                 case CameraFacing.front:
-    //                   return const Icon(Icons.camera_front);
-    //                 case CameraFacing.back:
-    //                   return const Icon(Icons.camera_rear);
-    //               }
-    //             },
-    //           ),
-    //           iconSize: 32.0,
-    //           onPressed: () => cameraController.switchCamera(),
-    //         ),
-    //       ],
-    //     ),
-    //     body: Stack(children: [
-    //       MobileScanner(
-    //         allowDuplicates: false,
-    //         controller: cameraController,
-    //         onDetect: (Barcode barcode, MobileScannerArguments? args) {
-    //           if (barcode.rawValue == null) {
-    //             debugPrint('Failed to scan Barcode');
-    //           } else {
-    //             final String code = barcode.rawValue!;
-    //             debugPrint('Barcode found! $code');
-    //           }
-    //         },
-    //       ),
-    //       QRScannerOverlay(overlayColour: Colors.black.withOpacity(0.5))
-    //     ])
-    //     );
   }
 }
 
@@ -170,6 +121,7 @@ class Body extends StatelessWidget {
     final scanQR = BlocProvider.of<QrBloc>(context);
     return Stack(children: [
       MobileScanner(
+        key: GlobalKey(debugLabel: "mobile-scanner-key"),
         allowDuplicates: false,
         controller: cameraController,
         onDetect: (Barcode barcode, MobileScannerArguments? args) {

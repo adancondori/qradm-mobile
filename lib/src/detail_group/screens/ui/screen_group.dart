@@ -1,7 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qradm/src/detail_group/bloc/group_bloc.dart';
 import 'package:qradm/src/detail_group/model/group.dart';
 import 'package:qradm/src/detail_group/screens/widget/text_label.dart';
 import 'package:qradm/src/extra_point/model/extra_point.dart';
+import 'package:qradm/src/extra_point/model/request_extrapoint.dart';
+import 'package:qradm/src/login/bloc/login_bloc.dart';
+import 'package:qradm/src/login/model/user.dart';
 import 'package:qradm/src/model_generic/group_action.dart';
 import 'package:qradm/src/service/app_constant.dart';
 
@@ -16,6 +22,7 @@ class ScreenGroup extends StatefulWidget {
 }
 
 class _ScreenGroupState extends State<ScreenGroup> {
+  final TextEditingController myController = TextEditingController();
   String selectedValue = "";
 
   List<DropdownMenuItem<String>> get dropdownItems {
@@ -42,7 +49,6 @@ class _ScreenGroupState extends State<ScreenGroup> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     selectedValue =
         ((widget.groupaction) as ExtraPoint).amount.toInt().toString();
@@ -50,7 +56,14 @@ class _ScreenGroupState extends State<ScreenGroup> {
 
   final _dropdownFormKey = GlobalKey<FormState>();
 
-  Form bodyForm() {
+  Form bodyForm(GroupBloc groupBloc) {
+    LoginBloc _userBloc = BlocProvider.of<LoginBloc>(context);
+    User user = User();
+    user.id = 0;
+    if (_userBloc.state is Authenticated) {
+      user = (_userBloc.state as Authenticated).user;
+    }
+
     return Form(
       key: _dropdownFormKey,
       child: Column(
@@ -85,6 +98,7 @@ class _ScreenGroupState extends State<ScreenGroup> {
             height: 20,
           ),
           TextFormField(
+            controller: myController,
             autovalidateMode: AutovalidateMode.always,
             decoration: const InputDecoration(
               icon: Icon(Icons.edit_note),
@@ -101,7 +115,18 @@ class _ScreenGroupState extends State<ScreenGroup> {
           ElevatedButton(
             onPressed: () {
               if (_dropdownFormKey.currentState!.validate()) {
-                //valid flow
+                // getUser();
+                groupBloc.add(
+                  RequestAPI(
+                    RequestGroup(
+                      widget.group.code,
+                      widget.groupaction.getId(),
+                      int.parse(selectedValue),
+                      myController.value.text,
+                      user,
+                    ),
+                  ),
+                );
               }
             },
             child: Text("Enviar"),
@@ -113,53 +138,83 @@ class _ScreenGroupState extends State<ScreenGroup> {
 
   @override
   Widget build(BuildContext context) {
+    final groupBloc = BlocProvider.of<GroupBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           "Familia",
         ),
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Center(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minWidth: MediaQuery.of(context).size.width,
-                        minHeight: MediaQuery.of(context).size.height,
-                      ),
-                      child: IntrinsicHeight(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                TextLabel("Nombre:", widget.group.name),
-                                TextLabel(
-                                    "Descripción:", widget.group.description),
-                                TextLabel("Código", widget.group.code),
-                                // TextLabel("Estado",widget.group.state ? "ACTIVO" : "INACTIVO"),
-                                TextLabel(
-                                    "SELECCIONE Y AGREGUE OBSERVACIONES", ""),
-                                bodyForm(),
-                              ],
-                            )
-                          ],
-                        ),
+      body: BlocListener<GroupBloc, GroupState>(
+        listener: (context, state) {
+          if (state is RedirectBack) {
+            Navigator.pop(context);
+          }
+          if (state is AuthErrorAll) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.error)));
+          }
+        },
+        child: BlocBuilder<GroupBloc, GroupState>(
+          builder: (context, state) {
+            if (state is Loading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is GroupInitialAll ||
+                state is AuthError ||
+                state is RedirectBack) {
+              return bodyPrincipal(context, groupBloc);
+            }
+            return Container();
+          },
+        ),
+      ),
+    );
+  }
+
+  Column bodyPrincipal(BuildContext context, GroupBloc groupBloc) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: MediaQuery.of(context).size.width,
+                      minHeight: MediaQuery.of(context).size.height,
+                    ),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              TextLabel("Nombre:", widget.group.name),
+                              TextLabel(
+                                  "Descripción:", widget.group.description),
+                              TextLabel("Código", widget.group.code),
+                              // TextLabel("Estado",widget.group.state ? "ACTIVO" : "INACTIVO"),
+                              TextLabel(
+                                  "SELECCIONE Y AGREGUE OBSERVACIONES", ""),
+                              bodyForm(groupBloc),
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-          ]),
-    );
+          ),
+        ]);
   }
 }
