@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:qradm/src/service/decodable.dart';
 
-class User implements Decodable<User> {
+class User implements Decodable<User>, Equatable {
 
   late int id;
   late String name;
@@ -27,5 +28,24 @@ class User implements Decodable<User> {
     event = data['event'] ?? '';
     return this;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+                                id,
+                                name,
+                                last_name,
+                                type_role,
+                                phone,
+                                event_id,
+                                state,
+                                code,
+                                email,
+                                event
+  ];
+
+  @override
+  // TODO: implement stringify
+  bool? get stringify => false;
 
 }

@@ -26,4 +26,5 @@ Data/ Model: Modelos de manejo de datos PODO, Plain Old Dart Object.
 
 # QR turorial
 https://www.youtube.com/watch?v=Oaujc9-LagY
-
+# BLOC Tutorial 
+https://dhruvnakum.xyz/flutter-bloc-v8-google-sign-in-and-firebase-authentication-2022-guide#heading-signin
