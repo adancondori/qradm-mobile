@@ -9,6 +9,7 @@ import 'package:qradm/screens/header_appbar.dart';
 import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
 import 'package:qradm/src/login/bloc/bloc_login.dart';
 import 'package:qradm/src/login/ui/screens/login_screen.dart';
+import 'package:qradm/src/principal.dart';
 
 void main() {
   runApp(const MyApp2());

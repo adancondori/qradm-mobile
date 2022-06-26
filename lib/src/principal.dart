@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:qradm/screens/ScreenList.dart';
+import 'package:qradm/src/group_details/bloc/bloc_group_details.dart';
+import 'package:qradm/src/group_details/ui/screens/group_details_screen.dart';
 import 'package:qradm/src/login/bloc/bloc_login.dart';
 import 'package:qradm/src/login/ui/screens/login_screen.dart';
 import 'package:qradm/src/read_qr/bloc/ReadQR.dart';
@@ -35,9 +37,9 @@ class Principal extends StatelessWidget {
             case 0:
               return CupertinoTabView(
                 builder: (BuildContext context) {
-                  return BlocProvider<ReadQRBloc>(
-                    bloc: ReadQRBloc(),
-                    child: ReadQR(),
+                  return BlocProvider<GroupDetailsBloc>(
+                    bloc: GroupDetailsBloc(),
+                    child: GroupDetails(),
                   );
                 },
               );

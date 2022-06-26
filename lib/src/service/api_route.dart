@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 enum APIType {
   api_login_user,
   api_extrapoint,
+  api_group_details,
   listEmployees,
   detailsEmployee,
   refreshToken,
@@ -34,6 +35,12 @@ class APIRoute implements APIRouteConfigurable {
       case APIType.api_extrapoint:
         return RequestOptions(
             path: '/extrapoints',
+            method: APIMethod.get,
+            extra: noAuth
+        );
+      case APIType.api_group_details:
+        return RequestOptions(
+            path: '/group_qrscan?code=GROUP220600001',
             method: APIMethod.get,
             extra: noAuth
         );

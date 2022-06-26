@@ -3,6 +3,7 @@ import 'package:qradm/screens/ScreenList.dart';
 import 'package:qradm/screens/Search.dart';
 import 'package:qradm/screens/home.dart';
 import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
+import 'package:qradm/src/group_details/ui/screens/group_details_screen.dart';
 import 'package:qradm/src/extra_point/screens/ui/extra_point_screen.dart';
 import 'package:qradm/src/navigation/test.dart';
 import 'package:qradm/src/punishments/ui/screens/punishment_screen.dart';
@@ -14,7 +15,6 @@ class NavigationScreen extends StatefulWidget {
     // TODO: implement createState
     return _NavigationScreen();
   }
-
 }
 
 class _NavigationScreen extends State<NavigationScreen> {
@@ -23,13 +23,14 @@ class _NavigationScreen extends State<NavigationScreen> {
     // ReadQR(),
     //Search(),
     //ScreenList(),
-    ActivityScreen(),
+    //ActivityScreen(),
+    GroupDetails(),
     PunishmentScreen(),
     //TestAPI(),
     ExtraPointScreen()
   ];
 
-  void onTapTapped(int index){
+  void onTapTapped(int index) {
     setState(() {
       indexTap = index;
     });
@@ -39,38 +40,25 @@ class _NavigationScreen extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
 
-
-    return  Scaffold(
+    return Scaffold(
       body: widgetsChildren[indexTap],
       bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-            canvasColor: Colors.white,
-            primaryColor: Colors.purple
-        ),
+        data: Theme.of(context)
+            .copyWith(canvasColor: Colors.white, primaryColor: Colors.purple),
         child: BottomNavigationBar(
             onTap: onTapTapped,
             currentIndex: indexTap,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: ""
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  label: ""
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: ""
-              ),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+              BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
+              BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
               // BottomNavigationBarItem(
               //     icon: Icon(Icons.person),
               //     label: ""
               // ),
-            ]
-        ),
+            ]),
       ),
     );
   }
