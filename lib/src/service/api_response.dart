@@ -70,9 +70,10 @@ class APIListResponse<T> extends GenericObject<T>
 
   @override
   APIListResponse<T> decode(dynamic json) {
-    status = json['status'];
+    print (json);
+    //status = json['status'];
     data = [];
-    json['data'].forEach((item) {
+    json.forEach((item) {
       print("----------------");
       print(item);
       print("----------------");

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 enum APIType {
-
+  users,
   listEmployees,
   detailsEmployee,
   refreshToken,
@@ -42,6 +42,12 @@ class APIRoute implements APIRouteConfigurable {
         path: '/sanciones/$routeParams',
         method: APIMethod.post,
       );
+      case APIType.users:
+        return RequestOptions(
+            path: '/users',
+            method: APIMethod.get,
+            extra: noAuth
+        );
       default:
         return RequestOptions(
             path: '/employees',
