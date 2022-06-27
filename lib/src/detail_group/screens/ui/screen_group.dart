@@ -26,21 +26,22 @@ class _ScreenGroupState extends State<ScreenGroup> {
   String selectedValue = "";
 
   List<DropdownMenuItem<String>> get dropdownItems {
-    ExtraPoint extraPoint = widget.groupaction as ExtraPoint;
     int percent1 = widget.groupaction.getAmount().toInt();
-    int percent2 = (extraPoint.amount * AppConstants.PERCENTAJE1).toInt();
-    int percent3 = (extraPoint.amount * AppConstants.PERCENTAJE2).toInt();
+    int percent2 =
+        (widget.groupaction.getAmount() * AppConstants.PERCENTAJE1).toInt();
+    int percent3 =
+        (widget.groupaction.getAmount() * AppConstants.PERCENTAJE2).toInt();
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(
-        child: Text("${extraPoint.name}-${percent1.toString()}"),
+        child: Text("${widget.groupaction.getName()}-${percent1.toString()}"),
         value: percent1.toString(),
       ),
       DropdownMenuItem(
-        child: Text("${extraPoint.name}-${percent2.toString()}"),
+        child: Text("${widget.groupaction.getName()}-${percent2.toString()}"),
         value: percent2.toString(),
       ),
       DropdownMenuItem(
-        child: Text("${extraPoint.name}-${percent3.toString()}"),
+        child: Text("${widget.groupaction.getName()}-${percent3.toString()}"),
         value: percent3.toString(),
       )
     ];
@@ -50,8 +51,7 @@ class _ScreenGroupState extends State<ScreenGroup> {
   @override
   void initState() {
     super.initState();
-    selectedValue =
-        ((widget.groupaction) as ExtraPoint).amount.toInt().toString();
+    selectedValue = widget.groupaction.getAmount().toInt().toString();
   }
 
   final _dropdownFormKey = GlobalKey<FormState>();
@@ -125,6 +125,7 @@ class _ScreenGroupState extends State<ScreenGroup> {
                       myController.value.text,
                       user,
                     ),
+                    widget.groupaction,
                   ),
                 );
               }

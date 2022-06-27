@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qradm/src/guest/ui/screens/guest_list.dart';
 import 'package:qradm/src/login/bloc/login_bloc.dart';
 import 'package:qradm/src/navigation/navigation_screen.dart';
 import 'package:qradm/src/login/ui/widgets/button_send.dart';
@@ -20,6 +21,13 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => NavigationScreen()),
+    );
+  }
+
+  goMyDetails() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => GuestList()),
     );
   }
 
@@ -58,7 +66,11 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state is Authenticated) {
-            goHome();
+            if (state.user.type_role == "GUEST") {
+              goMyDetails();
+            } else {
+              goHome();
+            }
           }
           if (state is AuthError) {
             // Showing the error message if the user has entered invalid credentials

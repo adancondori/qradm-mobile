@@ -47,7 +47,10 @@ class AuthRepository {
     return result.payload;
   }
 
-  Future<ResponseAcEPSa> sendGroupACEPSA(RequestGroup requestGroup) async {
+  Future<ResponseAcEPSa> sendGroupAllType(
+    RequestGroup requestGroup,
+    String route_api,
+  ) async {
     // Perform GET request to the endpoint "/users/<id>"
     final Dio _dio = Dio();
     Map<String, dynamic> headers = {'CODE': requestGroup.user.code};
@@ -56,10 +59,10 @@ class AuthRepository {
     ResponseAcEPSa responseAcEPSa = ResponseAcEPSa();
     try {
       Response request = await _dio.post(
-        AppConstants.BASE_URL + '/save_group_extrapoint',
+        AppConstants.BASE_URL + route_api,
         data: {
           "code_group": requestGroup.codeGroup,
-          "extrapoint_id": requestGroup.extrapointId,
+          "id": requestGroup.id,
           "value": requestGroup.value,
           "observation": requestGroup.observation,
         },

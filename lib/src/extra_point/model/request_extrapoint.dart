@@ -6,14 +6,14 @@ import 'package:qradm/src/service/decodable.dart';
 
 class RequestGroup {
   String? codeGroup;
-  int? extrapointId;
+  int? id;
   int? value;
   String? observation;
   User user;
 
   RequestGroup(
     this.codeGroup,
-    this.extrapointId,
+    this.id,
     this.value,
     this.observation,
     this.user,
@@ -22,7 +22,7 @@ class RequestGroup {
   String encode() {
     String body = jsonEncode(<String, dynamic>{
       'code_group': codeGroup,
-      'extrapoint_id': extrapointId,
+      'extrapoint_id': id,
       'value': value,
       'observation': observation
     });

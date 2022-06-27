@@ -78,7 +78,7 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Actividades')),
+      appBar: AppBar(title: Text('Puntos Extras')),
       body: Container(
         color: Colors.white,
         child: Stack(
