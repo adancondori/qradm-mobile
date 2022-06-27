@@ -68,6 +68,7 @@ flutter:
     - lib/assets/icon/warning.png
     - lib/assets/img/beach.jpeg
     - lib/assets/img/login.png
+    - lib/assets/icon/exclamation.png
   fonts:
     - family: Lato
       fonts:

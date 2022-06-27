@@ -9,6 +9,8 @@ import 'package:qradm/src/navigation/test.dart';
 import 'package:qradm/src/punishments/ui/screens/punishment_screen.dart';
 import 'package:qradm/src/read_qr/ui/screens/read_qr.dart';
 
+
+
 class NavigationScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
