@@ -53,7 +53,7 @@ class AuthRepository {
   ) async {
     // Perform GET request to the endpoint "/users/<id>"
     final Dio _dio = Dio();
-    Map<String, dynamic> headers = {'CODE': requestGroup.user.code};
+    Map<String, dynamic> headers = {'CODE': requestGroup.user.email};
     _dio.options = BaseOptions(headers: headers);
 
     ResponseAcEPSa responseAcEPSa = ResponseAcEPSa();
