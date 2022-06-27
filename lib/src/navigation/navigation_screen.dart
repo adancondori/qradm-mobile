@@ -8,6 +8,7 @@ import 'package:qradm/src/extra_point/screens/ui/extra_point_screen.dart';
 import 'package:qradm/src/navigation/test.dart';
 import 'package:qradm/src/punishments/ui/screens/punishment_screen.dart';
 import 'package:qradm/src/read_qr/ui/screens/read_qr.dart';
+import 'package:qradm/src/sanction/ui/screens/view_api_users.dart';
 
 
 
@@ -25,7 +26,8 @@ class _NavigationScreen extends State<NavigationScreen> {
     //Search(),
     //ScreenList(),
     ApiActivitysScreen(),
-    PunishmentScreen(),
+    // PunishmentScreen(),
+    ViewSanctions(),
     //TestAPI(),
     ExtraPointScreen()
   ];

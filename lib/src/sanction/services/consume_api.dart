@@ -1,9 +1,6 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:qradm/src/api_service/model/sanction_api.dart';
 import 'package:http/http.dart' as http;
+import 'package:qradm/src/sanction/model/sanction_api.dart';
 
 class SanctionService {
   Future<List<Sanctions>?> getSanctions() async {

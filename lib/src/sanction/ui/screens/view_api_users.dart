@@ -1,6 +1,6 @@
-import 'package:qradm/src/api_service/model/sanction_api.dart';
-import 'package:qradm/src/api_service/services/consume_api.dart';
 import 'package:flutter/material.dart';
+import 'package:qradm/src/sanction/model/sanction_api.dart';
+import 'package:qradm/src/sanction/services/consume_api.dart';
 
 class ViewSanctions extends StatefulWidget {
   const ViewSanctions({Key? key}) : super(key: key);
