@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:qradm/src/event/model/evento.dart';
 import 'package:qradm/src/service/decodable.dart';
 
 class User implements Decodable<User>, Equatable {
@@ -12,7 +13,7 @@ class User implements Decodable<User>, Equatable {
   late bool state;
   late String code;
   late String email;
-  late String event;
+  Evento? event;
 
   @override
   User decode(dynamic data) {
@@ -25,7 +26,11 @@ class User implements Decodable<User>, Equatable {
     state = data['state'] ?? true;
     code = data['code'] ?? '';
     email = data['email'] ?? '';
-    event = data['event'] ?? '';
+    if (data['event'] != null) {
+      event = Evento().decode(data['event']);
+    } else {
+      event = null;
+    }
     return this;
   }
 

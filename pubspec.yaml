@@ -40,6 +40,7 @@ dependencies:
   mobile_scanner: 1.1.2
   equatable: ^2.0.3
   flutter_bloc: ^8.0.1
+  animated_flip_counter: ^0.2.4
 
 dev_dependencies:
   flutter_test:

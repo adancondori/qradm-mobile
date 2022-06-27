@@ -4,6 +4,7 @@ part of 'group_bloc.dart';
 abstract class GroupEvent {}
 
 class RequestAPI extends GroupEvent {
-  final RequestGroup reuest_group;
-  RequestAPI(this.reuest_group);
+  final RequestGroup request_group;
+  final GroupAction groupAction;
+  RequestAPI(this.request_group, this.groupAction);
 }

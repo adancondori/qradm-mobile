@@ -1,7 +1,7 @@
+import 'package:qradm/src/model_generic/group_action.dart';
 import 'package:qradm/src/service/decodable.dart';
 
-class ApiActivitys implements Decodable<ApiActivitys> {
-
+class ApiActivitys extends GroupAction implements Decodable<ApiActivitys> {
   late int id;
   late String name;
   late String description;
@@ -15,8 +15,6 @@ class ApiActivitys implements Decodable<ApiActivitys> {
   late int is_visible;
   //late int event_id;
   late String my_activity;
-
-
 
   @override
   ApiActivitys decode(dynamic data) {
@@ -36,4 +34,18 @@ class ApiActivitys implements Decodable<ApiActivitys> {
     return this;
   }
 
+  @override
+  double getAmount() {
+    return amount;
+  }
+
+  @override
+  int getId() {
+    return id;
+  }
+
+  @override
+  String getName() {
+    return name;
+  }
 }

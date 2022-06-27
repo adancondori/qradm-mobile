@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:qradm/src/api_activitys/model/api_activitys.dart';
 import 'package:qradm/src/api_activitys/ui/widgets/api_activitys_list.dart';
 import 'package:qradm/src/navigation/navigation_screen.dart';
+import 'package:qradm/src/read_qr/ui/screens/read_qr.dart';
 import 'package:qradm/src/service/api_client.dart';
 import 'package:qradm/src/service/api_response.dart';
 import 'package:qradm/src/service/api_route.dart';
+import 'package:qradm/src/service/app_constant.dart';
 import 'package:qradm/src/service/interceptors/auth_interceptor.dart';
 import 'package:qradm/src/service/interceptors/log_interceptor.dart';
 
@@ -19,10 +21,10 @@ class _ApiActivitysScreenState extends State<ApiActivitysScreen> {
 
   late APIClient client;
 
-  onPressed(ApiActivitys apiActivitys) {
+  onPressed(ApiActivitys apiActivity) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => NavigationScreen()),
+      MaterialPageRoute(builder: (context) => ReadQR(groupaction: apiActivity)),
     );
   }
 
@@ -33,7 +35,7 @@ class _ApiActivitysScreenState extends State<ApiActivitysScreen> {
         options: BaseOptions(
       connectTimeout: 10000,
       receiveTimeout: 10000,
-      baseUrl: 'https://www.eventsadm.space/api/v1/mobile',
+      baseUrl: AppConstants.BASE_URL,
     ));
     final interceptors = [
       AuthInterceptor(client, AuthToken(expiredTime: 1616142369958)),
@@ -62,7 +64,10 @@ class _ApiActivitysScreenState extends State<ApiActivitysScreen> {
               padding: const EdgeInsets.all(8),
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
-                return ApiActivitysList(snapshot.data[index]);
+                return ApiActivitysList(
+                  snapshot.data[index],
+                  onPress: onPressed,
+                );
               }));
         } else {
           return const Center(
@@ -73,7 +78,7 @@ class _ApiActivitysScreenState extends State<ApiActivitysScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Api Actividades Prueba')),
+      appBar: AppBar(title: Text('Actividades')),
       body: Container(
         color: Colors.white,
         child: Stack(
