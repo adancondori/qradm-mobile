@@ -82,6 +82,7 @@ class APIListResponse<T> extends GenericObject<T>
     implements Decodable<APIListResponse<T>> {
   late String type;
   late List<T> payload;
+  late String msg;
 
   APIListResponse({required Create<Decodable> create}) : super(create: create);
 

@@ -6,6 +6,10 @@ enum APIType {
   api_scan_group,
   api_group_extrapoint,
   api_activity,
+  api_group_details,
+  api_my_activities,
+  api_my_extrapoints,
+  api_my_sanctions,
   listEmployees,
   detailsEmployee,
   refreshToken,
@@ -38,14 +42,31 @@ class APIRoute implements APIRouteConfigurable {
             extra: noAuth);
       case APIType.api_activity:
         return RequestOptions(
-            path: '/activities',
-            method: APIMethod.get,
-            extra: noAuth
-        );
+            path: '/activities', method: APIMethod.get, extra: noAuth);
       case APIType.api_group_extrapoint:
         return RequestOptions(
             path: '/save_group_extrapoint',
             method: APIMethod.post,
+            extra: noAuth);
+      case APIType.api_group_details:
+        return RequestOptions(
+            path: '/group_details?$routeParams',
+            method: APIMethod.get,
+            extra: noAuth);
+      case APIType.api_my_activities:
+        return RequestOptions(
+            path: '/my_activities?$routeParams',
+            method: APIMethod.get,
+            extra: noAuth);
+      case APIType.api_my_extrapoints:
+        return RequestOptions(
+            path: '/my_extrapoints?$routeParams',
+            method: APIMethod.get,
+            extra: noAuth);
+      case APIType.api_my_sanctions:
+        return RequestOptions(
+            path: '/my_sanctions?$routeParams',
+            method: APIMethod.get,
             extra: noAuth);
 
       case APIType.listEmployees:

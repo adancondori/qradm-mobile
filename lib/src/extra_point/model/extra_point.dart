@@ -1,4 +1,5 @@
 import 'package:qradm/src/model_generic/group_action.dart';
+import 'package:qradm/src/model_generic/relation_group.dart';
 import 'package:qradm/src/service/decodable.dart';
 
 class ExtraPoint extends GroupAction implements Decodable<ExtraPoint> {
@@ -14,7 +15,7 @@ class ExtraPoint extends GroupAction implements Decodable<ExtraPoint> {
   // late int state;
   // late int is_visible;
   late int event_id;
-  late ExtraPoint? my_extrapoint;
+  late RelationGroup? my_extrapoint;
 
   ExtraPoint();
 
@@ -23,18 +24,12 @@ class ExtraPoint extends GroupAction implements Decodable<ExtraPoint> {
     id = data['id'] ?? 0;
     name = data['name'] ?? '';
     description = data['description'] ?? '';
-    // rules = data['rules'] ?? '';
     code = data['code'] ?? '';
-    // date_init = data['date_init'] ?? '';
-    // date_end = data['date_end'] ?? '';
     amount = double.parse(data['amount']);
-    // is_closed = data['is_closed'] ?? 0;
-    // state = data['state'] ?? 0;
-    // is_visible = data['is_visible'] ?? 0;
     event_id = data['event_id'] ?? 0;
-    var extrapoint = ExtraPoint();
+    var model = RelationGroup();
     my_extrapoint = data['my_extrapoint'] != null
-        ? extrapoint.decode(data['my_extrapoint'])
+        ? model.decode(data['my_extrapoint'])
         : null;
     return this;
   }
@@ -52,5 +47,21 @@ class ExtraPoint extends GroupAction implements Decodable<ExtraPoint> {
   @override
   int getId() {
     return id;
+  }
+
+  @override
+  bool existMyAction() {
+    return my_extrapoint != null;
+  }
+
+  @override
+  double getMyAmount() {
+    double aux = my_extrapoint != null ? my_extrapoint!.amount : 0.0;
+    return aux;
+  }
+
+  @override
+  String getDescription() {
+    return description;
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qradm/screens/Navigation.dart';
 import 'package:qradm/src/detail_group/bloc/group_bloc.dart';
+import 'package:qradm/src/guest/bloc/guest_detail_bloc.dart';
+import 'package:qradm/src/guest_list/ui/bloc/bloc_list_bloc.dart';
 import 'package:qradm/src/login/bloc/login_bloc.dart';
 import 'package:qradm/src/login/model/user.dart';
 import 'package:qradm/src/login/ui/screens/login_screen.dart';
@@ -66,9 +68,16 @@ class AppState extends StatelessWidget {
           BlocProvider<GroupBloc>(
               create: (context) => GroupBloc(
                   authRepository:
-                  RepositoryProvider.of<AuthRepository>(context))),
-        ], child: MyApp2())
-        );
+                      RepositoryProvider.of<AuthRepository>(context))),
+          BlocProvider<GuestDetailBloc>(
+              create: (context) => GuestDetailBloc(
+                  authRepository:
+                      RepositoryProvider.of<AuthRepository>(context))),
+          BlocProvider<ListGuestBloc>(
+              create: (context) => ListGuestBloc(
+                  authRepository:
+                      RepositoryProvider.of<AuthRepository>(context))),
+        ], child: MyApp2()));
   }
 }
 

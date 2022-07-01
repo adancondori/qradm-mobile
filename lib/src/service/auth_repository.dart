@@ -1,8 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:qradm/src/activity/model/Activity.dart';
+import 'package:qradm/src/api_activitys/model/api_activitys.dart';
 import 'package:qradm/src/detail_group/model/group.dart';
+import 'package:qradm/src/extra_point/model/extra_point.dart';
 import 'package:qradm/src/extra_point/model/request_extrapoint.dart';
 import 'package:qradm/src/extra_point/model/response_acepsa.dart';
+import 'package:qradm/src/guest/model/guest.dart';
 import 'package:qradm/src/login/model/user.dart';
+import 'package:qradm/src/sanction/model/sanction_api.dart';
 import 'package:qradm/src/service/api_client.dart';
 import 'package:qradm/src/service/api_response.dart';
 import 'package:qradm/src/service/api_route.dart';
@@ -87,5 +92,68 @@ class AuthRepository {
     }
 
     return responseAcEPSa;
+  }
+
+  Future<APIResponse> getGroupDetail(String codeGroup) async {
+    final interceptors = [
+      AuthInterceptor(client, AuthToken(expiredTime: 1616142369958)),
+      APILogInterceptor(),
+    ];
+
+    client.instance.interceptors.addAll(interceptors);
+    final result = await client.request<APIResponse<GuestDetail>>(
+      route:
+          APIRoute(APIType.api_group_details, routeParams: "code=$codeGroup"),
+      create: () => APIResponse(create: () => GuestDetail()),
+    );
+    return result.payload;
+  }
+
+  Future<APIListResponse> getMyActivities(String codeGroup) async {
+    final interceptors = [
+      AuthInterceptor(client, AuthToken(expiredTime: 1616142369958)),
+      APILogInterceptor(),
+    ];
+    client.instance.interceptors.addAll(interceptors);
+    final result = await client.request<APIListResponse<ApiActivitys>>(
+        route: APIRoute(
+          APIType.api_my_activities,
+          routeParams: "code_group=$codeGroup",
+        ),
+        create: () => APIListResponse(create: () => ApiActivitys()));
+    return result.payload;
+  }
+
+  Future<APIListResponse> getMyExtraPoints(String codeGroup) async {
+    final interceptors = [
+      AuthInterceptor(client, AuthToken(expiredTime: 1616142369958)),
+      APILogInterceptor(),
+    ];
+    client.instance.interceptors.addAll(interceptors);
+    final result = await client.request<APIListResponse<ExtraPoint>>(
+        route: APIRoute(
+          APIType.api_my_extrapoints,
+          routeParams: "code_group=$codeGroup",
+        ),
+        create: () => APIListResponse(create: () => ExtraPoint()));
+
+    return result.payload;
+  }
+
+  Future<APIListResponse> getMySanctions(String codeGroup) async {
+    final interceptors = [
+      AuthInterceptor(client, AuthToken(expiredTime: 1616142369958)),
+      APILogInterceptor(),
+    ];
+    client.instance.interceptors.addAll(interceptors);
+
+    final result = await client.request<APIListResponse<Sanctions>>(
+        route: APIRoute(
+          APIType.api_my_sanctions,
+          routeParams: "code_group=$codeGroup",
+        ),
+        create: () => APIListResponse(create: () => Sanctions(1, "", "", 0.0)));
+
+    return result.payload;
   }
 }

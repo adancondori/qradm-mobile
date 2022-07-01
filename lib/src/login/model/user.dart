@@ -3,7 +3,6 @@ import 'package:qradm/src/event/model/evento.dart';
 import 'package:qradm/src/service/decodable.dart';
 
 class User implements Decodable<User>, Equatable {
-
   late int id;
   late String name;
   late String last_name;
@@ -13,6 +12,7 @@ class User implements Decodable<User>, Equatable {
   late bool state;
   late String code;
   late String email;
+  late String app_token;
   Evento? event;
 
   @override
@@ -26,6 +26,7 @@ class User implements Decodable<User>, Equatable {
     state = data['state'] ?? true;
     code = data['code'] ?? '';
     email = data['email'] ?? '';
+    app_token = data['app_token'] ?? "";
     if (data['event'] != null) {
       event = Evento().decode(data['event']);
     } else {
@@ -37,20 +38,19 @@ class User implements Decodable<User>, Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-                                id,
-                                name,
-                                last_name,
-                                type_role,
-                                phone,
-                                event_id,
-                                state,
-                                code,
-                                email,
-                                event
-  ];
+        id,
+        name,
+        last_name,
+        type_role,
+        phone,
+        event_id,
+        state,
+        code,
+        email,
+        event
+      ];
 
   @override
   // TODO: implement stringify
   bool? get stringify => false;
-
 }

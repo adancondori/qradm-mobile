@@ -1,4 +1,5 @@
 import 'package:qradm/src/model_generic/group_action.dart';
+import 'package:qradm/src/model_generic/relation_group.dart';
 import 'package:qradm/src/service/decodable.dart';
 
 class ApiActivitys extends GroupAction implements Decodable<ApiActivitys> {
@@ -14,7 +15,7 @@ class ApiActivitys extends GroupAction implements Decodable<ApiActivitys> {
   late int state;
   late int is_visible;
   //late int event_id;
-  late String my_activity;
+  late RelationGroup? my_activity;
 
   @override
   ApiActivitys decode(dynamic data) {
@@ -30,7 +31,9 @@ class ApiActivitys extends GroupAction implements Decodable<ApiActivitys> {
     state = data['state'] ?? 0;
     is_visible = data['is_visible'] ?? 0;
     //event_id = data['event_id'] ?? 0;
-    my_activity = data['my_activity'] ?? '';
+    var model = RelationGroup();
+    my_activity =
+        data['my_activity'] != null ? model.decode(data['my_activity']) : null;
     return this;
   }
 
@@ -47,5 +50,21 @@ class ApiActivitys extends GroupAction implements Decodable<ApiActivitys> {
   @override
   String getName() {
     return name;
+  }
+
+  @override
+  bool existMyAction() {
+    return my_activity != null;
+  }
+
+  @override
+  double getMyAmount() {
+    double aux = my_activity != null ? my_activity!.amount : 0.0;
+    return aux;
+  }
+
+  @override
+  String getDescription() {
+    return description;
   }
 }

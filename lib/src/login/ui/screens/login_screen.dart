@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qradm/src/guest/ui/screens/guest_list.dart';
+import 'package:qradm/src/guest/ui/screens/guest_detail.dart';
 import 'package:qradm/src/login/bloc/login_bloc.dart';
+import 'package:qradm/src/login/model/user.dart';
 import 'package:qradm/src/navigation/navigation_screen.dart';
 import 'package:qradm/src/login/ui/widgets/button_send.dart';
 import 'package:qradm/src/login/ui/widgets/text_field_email.dart';
@@ -15,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController myController =
-      TextEditingController(text: 'USER220600001');
+      TextEditingController(text: '7728987');
 
   goHome() {
     Navigator.push(
@@ -24,16 +25,16 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  goMyDetails() {
+  goMyDetails(User user) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => GuestList()),
+      MaterialPageRoute(builder: (context) => GuestDetailScreen(user: user)),
     );
   }
 
   @override
   void dispose() {
-    myController.dispose();
+    // myController.dispose();
     super.dispose();
   }
 
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {
           if (state is Authenticated) {
             if (state.user.type_role == "GUEST") {
-              goMyDetails();
+              goMyDetails(state.user);
             } else {
               goHome();
             }

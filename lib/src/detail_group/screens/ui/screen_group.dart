@@ -150,7 +150,10 @@ class _ScreenGroupState extends State<ScreenGroup> {
       body: BlocListener<GroupBloc, GroupState>(
         listener: (context, state) {
           if (state is RedirectBack) {
-            Navigator.pop(context);
+            // Navigator.pop(context);
+
+            int count = 0;
+            Navigator.of(context).popUntil((_) => count++ >= 2);
           }
           if (state is AuthErrorAll) {
             ScaffoldMessenger.of(context)

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qradm/src/detail_group/model/group.dart';
 import 'package:qradm/src/detail_group/screens/ui/screen_group.dart';
-import 'package:qradm/src/extra_point/model/extra_point.dart';
 import 'package:qradm/src/model_generic/group_action.dart';
 import 'package:qradm/src/read_qr/bloc/qr_bloc.dart';
 import 'package:qradm/src/read_qr/ui/screens/qr_overlay.dart';

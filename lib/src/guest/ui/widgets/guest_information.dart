@@ -7,7 +7,7 @@ class GuestInformation extends StatelessWidget {
   GuestInformation(this.name, this.details);
 
   Widget build(BuildContext context) {
-    final GuestName = Container(
+    final artistName = Container(
       margin: const EdgeInsets.only(
         top: 25,
         left: 10,
@@ -40,7 +40,7 @@ class GuestInformation extends StatelessWidget {
 
     final info = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[GuestName, information],
+      children: <Widget>[artistName, information],
     );
 
     return info;
