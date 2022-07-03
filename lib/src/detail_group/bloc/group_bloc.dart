@@ -6,8 +6,8 @@ import 'package:qradm/src/api_activitys/model/api_activitys.dart';
 import 'package:qradm/src/extra_point/model/extra_point.dart';
 import 'package:qradm/src/extra_point/model/request_extrapoint.dart';
 import 'package:qradm/src/extra_point/model/response_acepsa.dart';
-import 'package:qradm/src/login/model/user.dart';
 import 'package:qradm/src/model_generic/group_action.dart';
+import 'package:qradm/src/sanction/model/sanction_api.dart';
 import 'package:qradm/src/service/app_constant.dart';
 import 'package:qradm/src/service/auth_repository.dart';
 
@@ -35,7 +35,7 @@ class GroupBloc extends Bloc<GroupEvent, GroupState> {
               '/save_group_activity',
             );
             result = result1;
-          } else if (event.groupAction is ExtraPoint) {
+          } else if (event.groupAction is Sanctions) {
             final result1 = await authRepository.sendGroupAllType(
               event.request_group,
               '/save_group_sanction',
