@@ -1,10 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qradm/src/detail_group/bloc/group_bloc.dart';
 import 'package:qradm/src/detail_group/model/group.dart';
 import 'package:qradm/src/detail_group/screens/widget/text_label.dart';
-import 'package:qradm/src/extra_point/model/extra_point.dart';
 import 'package:qradm/src/extra_point/model/request_extrapoint.dart';
 import 'package:qradm/src/login/bloc/login_bloc.dart';
 import 'package:qradm/src/login/model/user.dart';
@@ -141,38 +139,56 @@ class _ScreenGroupState extends State<ScreenGroup> {
   Widget build(BuildContext context) {
     final groupBloc = BlocProvider.of<GroupBloc>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Familia",
+    return WillPopScope(
+      onWillPop: () async {
+        int count = 0;
+        Navigator.of(context).popUntil((_) => count++ >= 2);
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {
+              int count = 0;
+              Navigator.of(context).popUntil((_) => count++ >= 2);
+            },
+          ),
+          title: const Text(
+            "CLUB",
+          ),
         ),
-      ),
-      body: BlocListener<GroupBloc, GroupState>(
-        listener: (context, state) {
-          if (state is RedirectBack) {
-            // Navigator.pop(context);
+        body: BlocListener<GroupBloc, GroupState>(
+          listener: (context, state) {
+            if (state is RedirectBack) {
+              // Navigator.pop(context);
 
-            int count = 0;
-            Navigator.of(context).popUntil((_) => count++ >= 2);
-          }
-          if (state is AuthErrorAll) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.error)));
-          }
-        },
-        child: BlocBuilder<GroupBloc, GroupState>(
-          builder: (context, state) {
-            if (state is Loading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is GroupInitialAll ||
-                state is AuthError ||
-                state is RedirectBack) {
-              return bodyPrincipal(context, groupBloc);
+              int count = 0;
+              Navigator.of(context).popUntil((_) => count++ >= 2);
             }
-            return Container();
+            if (state is AuthErrorAll) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.error),
+                backgroundColor: Colors.deepOrange,
+              ));
+            }
           },
+          child: BlocBuilder<GroupBloc, GroupState>(
+            builder: (context, state) {
+              if (state is Loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is GroupInitialAll ||
+                  state is AuthError ||
+                  state is RedirectBack) {
+                return bodyPrincipal(context, groupBloc);
+              } else {
+                return bodyPrincipal(context, groupBloc);
+              }
+              // return Container();
+            },
+          ),
         ),
       ),
     );

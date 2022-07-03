@@ -21,10 +21,14 @@ class _ExtraPointScreenState extends State<ExtraPointScreen> {
   late APIClient client;
 
   onPressed(ExtraPoint extraPoint) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ReadQR(groupaction: extraPoint)),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => ReadQR(groupaction: extraPoint)),
+    // );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Opción restringida."),
+      backgroundColor: Colors.deepOrange,
+    ));
   }
 
   @override
