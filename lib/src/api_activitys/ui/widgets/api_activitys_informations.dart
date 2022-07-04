@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qradm/src/api_activitys/model/api_activitys.dart';
-class ApiActivitysInformations extends StatelessWidget{
-  ApiActivitys apiActivitys ;
+
+class ApiActivitysInformations extends StatelessWidget {
+  ApiActivitys apiActivitys;
   ApiActivitysInformations(this.apiActivitys, {Key? key}) : super(key: key);
   Widget build(BuildContext context) {
     final Name = Container(
@@ -20,13 +21,10 @@ class ApiActivitysInformations extends StatelessWidget{
       ),
     );
     final Details = Container(
-      margin: const EdgeInsets.only(
-          top: 0,
-          left: 10,
-          bottom: 25
-      ),
+      margin: const EdgeInsets.only(top: 0, left: 10, bottom: 25),
       child: Text(
         apiActivitys.description,
+        maxLines: 2,
         style: const TextStyle(
           fontFamily: "Roboto",
           fontSize: 16,
@@ -37,12 +35,8 @@ class ApiActivitysInformations extends StatelessWidget{
     );
     final info = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Name,
-        Details
-      ],
+      children: <Widget>[Name, Details],
     );
     return info;
   }
-
 }
