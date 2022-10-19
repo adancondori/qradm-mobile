@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qradm/screens/ScreenList.dart';
-import 'package:qradm/screens/Search.dart';
-import 'package:qradm/screens/home.dart';
-import 'package:qradm/src/activity/ui/screens/activity_screen.dart';
 import 'package:qradm/src/api_activitys/ui/screens/screen_api_activitys.dart';
 import 'package:qradm/src/extra_point/screens/ui/extra_point_screen.dart';
-import 'package:qradm/src/navigation/test.dart';
-import 'package:qradm/src/punishments/ui/screens/punishment_screen.dart';
-import 'package:qradm/src/read_qr/ui/screens/read_qr.dart';
 import 'package:qradm/src/sanction/ui/screens/view_api_users.dart';
-
-
 
 class NavigationScreen extends StatefulWidget {
   @override
@@ -53,9 +44,24 @@ class _NavigationScreen extends State<NavigationScreen> {
             showSelectedLabels: false,
             showUnselectedLabels: false,
             items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.emoji_events_rounded,
+                    color: Colors.blueAccent,
+                  ),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.taxi_alert,
+                    color: Colors.blueAccent,
+                  ),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.work,
+                    color: Colors.blueAccent,
+                  ),
+                  label: ""),
               // BottomNavigationBarItem(
               //     icon: Icon(Icons.person),
               //     label: ""

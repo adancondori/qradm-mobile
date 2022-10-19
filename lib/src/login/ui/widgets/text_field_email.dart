@@ -18,7 +18,7 @@ class TextFieldEmail extends StatelessWidget {
         ),
         child: Padding(
           padding: EdgeInsets.only(left: 15.0),
-          child: TextField(
+          child: TextFormField(
             controller: controller,
             style: const TextStyle(
               fontSize: 15.0,

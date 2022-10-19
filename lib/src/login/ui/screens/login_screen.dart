@@ -15,8 +15,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController myController =
-      TextEditingController(text: '7728987');
+  final TextEditingController myController = TextEditingController(text: '');
 
   goHome() {
     Navigator.push(
@@ -111,28 +110,34 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-      height: double.infinity,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-            Color(0xff584CD1),
-            Color(0xcc584CD1),
-            Color(0xcc4268D3),
-            Color(0xff4268D3),
-          ])),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          TextLogin(),
-          ImageLogin(),
-          TextFieldEmail(controller: myController),
-          ButtonSend(buttonText: "Ingresar", controller: myController)
-        ],
+    final _formKey = GlobalKey<FormState>();
+    return Form(
+      key: _formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+              Color(0xff584CD1),
+              Color(0xcc584CD1),
+              Color(0xcc4268D3),
+              Color(0xff4268D3),
+            ])),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TextLogin(),
+              ImageLogin(),
+              TextFieldEmail(controller: myController),
+              ButtonSend(buttonText: "Ingresar", controller: myController)
+            ],
+          ),
+        ),
       ),
     );
   }

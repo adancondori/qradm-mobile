@@ -28,3 +28,20 @@ Data/ Model: Modelos de manejo de datos PODO, Plain Old Dart Object.
 https://www.youtube.com/watch?v=Oaujc9-LagY
 # BLOC Tutorial 
 https://dhruvnakum.xyz/flutter-bloc-v8-google-sign-in-and-firebase-authentication-2022-guide#heading-signin
+
+
+
+# Command to Generate APK
+
+flutter build apk or 
+flutter build appbundle
+
+
+
+Error git 
+ssh -T git@adancondori.github.com
+
+chmod 600 id_rsa_adancondori
+chmod 600 id_rsa_adancondori.pub
+
+https://gist.github.com/jexchan/2351996

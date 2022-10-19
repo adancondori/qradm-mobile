@@ -5,6 +5,7 @@ import 'package:qradm/src/detail_group/screens/widget/text_label.dart';
 import 'package:qradm/src/guest/bloc/guest_detail_bloc.dart';
 import 'package:qradm/src/guest/model/guest.dart';
 import 'package:qradm/src/guest/ui/widgets/button_update.dart';
+import 'package:qradm/src/guest/ui/widgets/button_update_data.dart';
 import 'package:qradm/src/guest/ui/widgets/title_value.dart';
 import 'package:qradm/src/login/model/user.dart';
 
@@ -29,7 +30,7 @@ class _GuestDetailState extends State<GuestDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Familia",
+          "Mi CLUB",
         ),
       ),
       body: BlocListener<GuestDetailBloc, GuestDetailState>(
@@ -87,7 +88,9 @@ class _GuestDetailState extends State<GuestDetailScreen> {
                                             state.guestDetail.total_sanction),
                                         TitleValue("TOTALES:",
                                             state.guestDetail.sum_total),
-                                        ButtonUpdate(buttonText: "Ver Detalle")
+                                        ButtonUpdate(buttonText: "Ver Detalle"),
+                                        ButtonUpdateData(
+                                            buttonText: "Actualizar Datos")
                                       ],
                                     )
                                   ],
